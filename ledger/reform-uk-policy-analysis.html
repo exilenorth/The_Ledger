@@ -20,6 +20,9 @@
         - All choices use Canvas for charts and structured HTML/CSS for layouts, adhering to the NO SVG/Mermaid constraint. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
+        html, body {
+            overflow: visible !important;
+        }
         body {
             font-family: 'Inter', sans-serif;
             /* background-color removed to allow dark theme to apply */
@@ -113,7 +116,7 @@
     </header>
 
     <!-- In-Page Sticky Navigation -->
-    <div class="sticky top-16 z-40 bg-gray-800/90 backdrop-blur-lg shadow-md">
+    <div class="sticky top-36 z-40 bg-gray-800/90 backdrop-blur-lg shadow-md">
         <div class="container mx-auto px-6">
             <nav class="flex items-center justify-center h-14">
                 <div class="flex space-x-6">
@@ -132,6 +135,7 @@
         <!-- Hero Section -->
         <section class="py-16 sm:py-24">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <img src="../assets/gfx/Reform_UK_Logo.png" alt="Reform UK Logo" class="mx-auto h-32 w-auto mb-4">
                 <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-amber-400">An Interactive Analysis of Reform UK's Policy Platform</h1>
                 <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-300">This page provides an evidence-based breakdown of Reform UK's social and economic policies. Explore their core vision, voter base, fiscal plans, and key proposals, contrasted with independent analysis.</p>
             </div>
