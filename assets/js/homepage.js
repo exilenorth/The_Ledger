@@ -1,55 +1,70 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const ledgerContainer = document.getElementById('ledger-entries');
-    const commentaryContainer = document.getElementById('commentary-entries');
+    const articlesContainer = document.getElementById('articles-container');
 
     const loadEntries = async () => {
-        try {
-            const ledgerResponse = await fetch('/assets/data/ledger.json');
-            const ledgerEntries = await ledgerResponse.json();
+        if (!articlesContainer) return;
 
-            const commentaryResponse = await fetch('/assets/data/commentary.json');
+        try {
+            // Fetch both data sources
+            const [ledgerResponse, commentaryResponse] = await Promise.all([
+                fetch('/assets/data/ledger.json'),
+                fetch('/assets/data/commentary.json')
+            ]);
+
+            const ledgerEntries = await ledgerResponse.json();
             const commentaryEntries = await commentaryResponse.json();
 
-            // Sort entries by date, newest first
-            const sortedLedger = ledgerEntries.sort((a, b) => new Date(b.date) - new Date(a.date));
-            const sortedCommentary = commentaryEntries.sort((a, b) => new Date(b.date) - new Date(a.date));
+            // Add a 'type' property to each article
+            const typedLedgerEntries = ledgerEntries.map(entry => ({ ...entry, type: 'ledger' }));
+            const typedCommentaryEntries = commentaryEntries.map(entry => ({ ...entry, type: 'commentary' }));
+
+            // Merge and sort all articles by date
+            const allArticles = [...typedLedgerEntries, ...typedCommentaryEntries];
+            allArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
 
             // Clear existing static content
-            ledgerContainer.innerHTML = '';
-            commentaryContainer.innerHTML = '';
+            articlesContainer.innerHTML = '';
 
-            // Display latest 3 ledger entries
-            sortedLedger.slice(0, 3).forEach(entry => {
-                const card = `
-                    <div class="report-card bg-gray-800 rounded-lg overflow-hidden">
-                        <div class="p-8 flex flex-col h-full">
-                            <p class="text-sm text-gray-400 mb-2 font-semibold tracking-wider">ENTRY // ${new Date(entry.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase()}</p>
-                            <h3 class="text-2xl font-bold mb-3">${entry.title}</h3>
-                            <p class="text-gray-300 mb-6 flex-grow">${entry.summary}</p>
-                            <a href="${entry.link}" class="cta-button mt-auto inline-block font-bold py-2 px-5 rounded text-center transition-colors duration-300">
-                                View the Entry
-                            </a>
-                        </div>
-                    </div>`;
-                ledgerContainer.innerHTML += card;
-            });
-
-            // Display latest 3 commentary entries
-            sortedCommentary.slice(0, 3).forEach(entry => {
-                const card = `
-                    <div class="commentary-card bg-gray-800 rounded-lg p-6 border-l-4 border-sky-400 hover:border-sky-300 transition-colors duration-300">
-                        <p class="text-sm text-gray-400 mb-2 font-semibold tracking-wider">COMMENTARY // ${entry.author.toUpperCase()}</p>
-                        <h3 class="text-2xl font-bold mb-3 text-gray-50">${entry.title}</h3>
-                        <p class="text-gray-300 mb-4">${entry.summary}</p>
-                        <a href="${entry.link}" class="text-sky-400 hover:text-sky-300 font-semibold transition-colors duration-300">Read More &rarr;</a>
-                    </div>`;
-                commentaryContainer.innerHTML += card;
+            // Display all articles
+            allArticles.forEach(entry => {
+                const card = createCard(entry);
+                articlesContainer.innerHTML += card;
             });
 
         } catch (error) {
-            console.error('Error loading entries:', error);
-            ledgerContainer.innerHTML = '<p class="text-red-500">Failed to load Ledger entries.</p>';
-            commentaryContainer.innerHTML = '<p class="text-red-500">Failed to load Commentary entries.</p>';
+            console.error('Error loading articles:', error);
+            articlesContainer.innerHTML = '<p class="text-red-500">Failed to load articles.</p>';
+        }
+    };
+
+    const createCard = (entry) => {
+        const date = new Date(entry.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
+        const cardClass = `card card-${entry.type}`;
+        
+        if (entry.type === 'ledger') {
+            return `
+                <div class="${cardClass} bg-gray-800 rounded-lg overflow-hidden flex flex-col">
+                    <div class="p-6 flex-grow flex flex-col">
+                        <p class="text-sm text-gray-400 mb-2 font-semibold tracking-wider">LEDGER // ${date}</p>
+                        <h3 class="text-xl font-bold mb-3 flex-grow">${entry.title}</h3>
+                        <p class="text-gray-300 mb-4">${entry.summary}</p>
+                        <a href="${entry.link}" class="cta-button mt-auto inline-block font-bold py-2 px-4 rounded text-center transition-colors duration-300">
+                            View Entry
+                        </a>
+                    </div>
+                </div>`;
+        } else { // commentary
+            return `
+                <div class="${cardClass} bg-gray-800 rounded-lg overflow-hidden flex flex-col">
+                     <div class="p-6 flex-grow flex flex-col">
+                        <p class="text-sm text-gray-400 mb-2 font-semibold tracking-wider">COMMENTARY // ${date}</p>
+                        <h3 class="text-xl font-bold mb-3 flex-grow">${entry.title}</h3>
+                        <p class="text-gray-300 mb-4">${entry.summary}</p>
+                        <a href="${entry.link}" class="text-sky-400 hover:text-sky-300 font-semibold transition-colors duration-300 mt-auto">
+                            Read More &rarr;
+                        </a>
+                    </div>
+                </div>`;
         }
     };
 

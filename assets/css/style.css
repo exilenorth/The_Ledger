@@ -1,3 +1,7 @@
+:root {
+    --amber-500: #f59e0b;
+    --sky-500: #0ea5e9;
+}
 body {
     font-family: 'Inter', sans-serif;
     background-color: #111827; /* bg-gray-900 */
@@ -58,4 +62,100 @@ h1, h2, h3 {
     font-size: 2rem;
     line-height: 1;
     color: #4b5563; /* gray-600 */
+}
+html, body {
+    overflow: visible !important;
+}
+body {
+    font-family: 'Lora', serif;
+    /* background-color removed to allow dark theme to apply */
+    color: #ccc; /* Adjusted for dark theme readability */
+}
+.nav-link {
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+.nav-link:hover, .nav-link.active {
+    color: #d97706; /* amber-600 */
+    border-bottom-color: #d97706;
+}
+.section-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #ffffff; /* slate-800 */
+    margin-bottom: 1rem;
+}
+.section-subtitle {
+    font-size: 1.125rem;
+    color: #d1d5db; /* slate-600 */
+    max-width: 48rem;
+    margin: 0 auto 3rem auto;
+}
+.card {
+    background-color: #1f2937; /* Replaced white with dark gray for theme consistency */
+    border: 1px solid #374151; /* Added border for better visibility */
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+.tab-button {
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+}
+.tab-button.active {
+    background-color: #d97706;
+    color: #ffffff;
+}
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+    max-height: 400px;
+}
+@media (min-width: 768px) {
+    .chart-container {
+        height: 350px;
+    }
+}
+.details-arrow {
+    transition: transform 0.3s ease;
+}
+details[open] .details-arrow {
+    transform: rotate(90deg);
+}
+/* Card type indicators */
+.card-ledger {
+    border-top: 4px solid var(--amber-500);
+}
+
+.card-commentary {
+    border-top: 4px solid var(--sky-500);
+}
+
+.archive-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; /* Space between title and buttons */
+    padding: 1.5rem;
+    background-color: var(--slate-900); /* Match page background */
+    position: sticky;
+    top: 4rem; /* Adjust based on main header height */
+    z-index: 10;
+    border-bottom: 1px solid var(--slate-700);
+}
+
+.archive-header .filter-buttons .tab-button:hover {
+    background-color: var(--amber-500);
+    color: var(--slate-900);
 }
