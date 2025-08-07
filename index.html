@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UK Fiscal Pressures: A Comparative Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F4F8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .stat-card h3 {
+            color: #1E3A8A;
+        }
+        .stat-card p.stat {
+            color: #1D4ED8;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            line-height: 1;
+            color: #93C5FD;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-6 py-4">
+            <h1 class="text-2xl md:text-4xl font-extrabold text-center text-[#1E3A8A]">A Tale of Two Budgets</h1>
+            <p class="text-center text-lg text-gray-600 mt-1">Comparing the Fiscal Impact of UK Asylum Policy vs. the State Pension Triple Lock</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="introduction" class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-[#1E3A8A] mb-4">The £16 Billion Question</h2>
+            <p class="max-w-4xl mx-auto text-lg text-gray-700">The UK faces immense fiscal pressures. Two of the most debated are the rising cost of the asylum system and the long-term commitment to the state pension triple lock. While both are significant, their financial impact is vastly different. This analysis cuts through the noise to reveal where the greater fiscal challenge lies.</p>
+        </section>
+
+        <section id="comparison" class="mb-12">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#1E3A8A] mb-6">Annual Savings: A Head-to-Head Comparison</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">Abolishing the triple lock offers, at a minimum, double the immediate annual savings of completely stopping all small boat crossings. The nature of these savings is also fundamentally different.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-blue-50 border-l-4 border-[#3B82F6] p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold text-[#1E3A8A]">Stopping Small Boat Crossings</h3>
+                        <p class="text-5xl font-extrabold text-[#3B82F6] my-4">£3-5 Billion</p>
+                        <p class="text-gray-700 font-semibold">Potential Annual Saving</p>
+                        <ul class="mt-4 space-y-2 text-gray-600">
+                            <li><span class="font-bold text-[#3B82F6]">Nature:</span> Operational & Contingent</li>
+                            <li><span class="font-bold text-[#3B82F6]">Certainty:</span> Low & Volatile</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 border-l-4 border-[#1D4ED8] p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold text-[#1E3A8A]">Abolishing Pensions Triple Lock</h3>
+                        <p class="text-5xl font-extrabold text-[#1D4ED8] my-4">£11 Billion</p>
+                        <p class="text-gray-700 font-semibold">Current Additional Annual Cost</p>
+                         <ul class="mt-4 space-y-2 text-gray-600">
+                            <li><span class="font-bold text-[#1D4ED8]">Nature:</span> Structural & Compounding</li>
+                            <li><span class="font-bold text-[#1D4ED8]">Certainty:</span> High & Arithmetic</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="asylum-costs" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#1E3A8A] mb-2">The Asylum System: An Operational Crisis</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">The cost of the UK's asylum system has surged, driven by external pressures and significant operational inefficiencies, particularly the reliance on expensive hotel accommodation.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="stat-card bg-white rounded-2xl shadow-lg p-6 text-center">
+                    <h3 class="text-xl font-bold mb-2">Total Asylum System Cost (23/24)</h3>
+                    <p class="stat text-5xl font-extrabold">£5.4B</p>
+                </div>
+                <div class="stat-card bg-white rounded-2xl shadow-lg p-6 text-center">
+                    <h3 class="text-xl font-bold mb-2">Cost of Asylum Hotels (23/24)</h3>
+                    <p class="stat text-5xl font-extrabold">£3.1B</p>
+                </div>
+                 <div class="stat-card bg-white rounded-2xl shadow-lg p-6 text-center">
+                    <h3 class="text-xl font-bold mb-2">Daily Asylum Support (per person)</h3>
+                    <p class="stat text-5xl font-extrabold">~£7</p>
+                </div>
+            </div>
+            <div class="mt-8 bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h3 class="text-2xl font-bold text-center text-[#1E3A8A] mb-4">The Hotel Cost Disparity</h3>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">A small portion of asylum seekers housed in hotels account for a vastly disproportionate share of the total accommodation costs, highlighting a critical inefficiency.</p>
+                <div class="chart-container">
+                    <canvas id="hotelCostChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="pension-costs" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#1E3A8A] mb-2">The Triple Lock: A Structural Strain</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">The triple lock creates a powerful "ratchet effect," systematically pushing pension spending upwards faster than economic growth, embedding a compounding cost into the UK's finances.</p>
+             <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8">
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-center text-[#1E3A8A] mb-6">The Triple Lock's "Ratchet Effect" Explained</h3>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-4 text-center">
+                        <div class="p-4 bg-blue-50 rounded-lg">
+                            <p class="text-lg font-semibold text-[#1E3A8A]">Inflation</p>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="p-4 bg-blue-50 rounded-lg">
+                            <p class="text-lg font-semibold text-[#1E3A8A]">Earnings Growth</p>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="p-4 bg-blue-50 rounded-lg">
+                            <p class="text-lg font-semibold text-[#1E3A8A]">2.5% Floor</p>
+                        </div>
+                        <div class="flow-arrow font-bold text-[#1D4ED8]">=</div>
+                        <div class="p-6 bg-[#1D4ED8] rounded-lg text-white">
+                             <p class="text-xl font-bold">Pension Uprating (Highest of the Three)</p>
+                        </div>
+                    </div>
+                     <p class="text-center text-gray-600 mt-6 max-w-3xl mx-auto">This mechanism ensures the state pension's value never falls and often grows faster than the economy, creating a compounding fiscal commitment.</p>
+                </div>
+            </div>
+            <div class="mt-8 bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h3 class="text-2xl font-bold text-center text-[#1E3A8A] mb-4">Projected Growth of Additional Triple Lock Costs</h3>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">The additional annual cost of the triple lock compared to a simpler earnings link is not static. It is projected to grow significantly, placing escalating pressure on public finances.</p>
+                <div class="chart-container">
+                    <canvas id="tripleLockCostChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="text-center mt-12 pt-8 border-t border-gray-300">
+            <h2 class="text-4xl font-extrabold text-[#1E3A8A] mb-4">Conclusion: A Question of Priority</h2>
+            <p class="max-w-4xl mx-auto text-lg text-gray-700 mb-6">While managing asylum costs is an urgent operational challenge, the data is unequivocal. From a purely fiscal perspective, reforming the state pension triple lock offers a far greater, more certain, and more sustainable opportunity to improve the UK's long-term financial health.</p>
+            <div class="flex justify-center">
+                <div class="bg-[#1E3A8A] text-white font-bold py-3 px-8 rounded-full shadow-lg">
+                    Fiscal Impact: Pensions > Asylum
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-6 mt-8 bg-gray-800 text-white">
+        <p>Infographic based on the report: "A Comparative Fiscal Analysis."</p>
+        <p class="text-sm text-gray-400 mt-1">Data sourced from OBR, IFS, and NAO reports.</p>
+    </footer>
+
+    <script>
+        function wrapLabels(label) {
+            const max_width = 16;
+            if (label.length <= max_width) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let current_line = '';
+            for (const word of words) {
+                if ((current_line + ' ' + word).length > max_width && current_line.length > 0) {
+                    lines.push(current_line);
+                    current_line = word;
+                } else {
+                    current_line = current_line ? current_line + ' ' + word : word;
+                }
+            }
+            if (current_line) {
+                lines.push(current_line);
+            }
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const brilliantBlues = {
+            primary: '#1D4ED8',
+            secondary: '#3B82F6',
+            accent: '#93C5FD',
+            light: '#DBEAFE',
+            dark: '#1E3A8A',
+        };
+
+        const hotelCostCtx = document.getElementById('hotelCostChart').getContext('2d');
+        new Chart(hotelCostCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Hotel Accommodation Costs', 'Other Accommodation Costs', 'Population in Hotels', 'Population in Other Accommodation'],
+                datasets: [{
+                    label: 'Cost Distribution',
+                    data: [76, 24],
+                    backgroundColor: [brilliantBlues.primary, brilliantBlues.light],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 4,
+                    circumference: 180,
+                    rotation: 270,
+                }, {
+                    label: 'Population Distribution',
+                    data: [35, 65],
+                    backgroundColor: [brilliantBlues.secondary, brilliantBlues.accent],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 4,
+                    circumference: 180,
+                    rotation: 270,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback,
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                    title: {
+                        display: false
+                    }
+                },
+                cutout: '50%',
+            }
+        });
+
+        const tripleLockCostCtx = document.getElementById('tripleLockCostChart').getContext('2d');
+        new Chart(tripleLockCostCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Current Additional Cost', 'Projected Additional Cost (2030)'],
+                datasets: [{
+                    label: 'Additional Cost in £ Billions',
+                    data: [11, 15.5],
+                    backgroundColor: [brilliantBlues.secondary, brilliantBlues.primary],
+                    borderColor: [brilliantBlues.dark, brilliantBlues.dark],
+                    borderWidth: 2,
+                    borderRadius: 8,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Annual Cost (£ Billions)',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        },
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                         grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
