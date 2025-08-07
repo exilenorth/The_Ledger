@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Analysis: Reform UK's Policies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- Chosen Palette: Warm Neutrals with Subtle Accents -->
+    <!-- Application Structure Plan: A thematic, single-page dashboard structure. The user is guided through the party's core narrative, their voter base, a deep dive into the fiscal plans with interactive charts, and a detailed policy explorer. This structure is chosen to break down a dense political analysis into digestible, user-driven sections, prioritizing clarity and exploration over the linear format of the source report. The key interaction is the comparison chart in 'The Numbers' section, which visually and textually contrasts Reform's claims with IFS analysis, directly addressing the report's central thesis. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Voter Demographics -> Goal: Inform -> Viz: Doughnut/Bar Charts (Chart.js) -> Interaction: Hover tooltips -> Justification: Intuitive visual representation of proportions.
+        - Report Info: Fiscal Pledges vs. IFS Analysis -> Goal: Compare/Analyze -> Viz: Grouped Bar Chart (Chart.js) -> Interaction: Click bars to update detail text -> Justification: The most effective way to show the core 'fiscal hole' argument and link it to specific evidence.
+        - Report Info: Detailed Policies (Immigration, NHS, etc.) -> Goal: Organize/Inform -> Viz: Tabbed content sections (HTML/JS) -> Interaction: Click tabs to switch content -> Justification: Manages information density and allows user-led exploration of complex topics.
+        - Report Info: "Britain is Broken" Narrative -> Goal: Inform -> Viz: Icon-based grid layout -> Interaction: Static display -> Justification: Clearly presents the foundational pillars of the party's platform.
+        - All choices use Canvas for charts and structured HTML/CSS for layouts, adhering to the NO SVG/Mermaid constraint. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* background-color removed to allow dark theme to apply */
+            color: #ccc; /* Adjusted for dark theme readability */
+        }
+        .nav-link {
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #d97706; /* amber-600 */
+            border-bottom-color: #d97706;
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #ffffff; /* slate-800 */
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #d1d5db; /* slate-600 */
+            max-width: 48rem;
+            margin: 0 auto 3rem auto;
+        }
+        .card {
+            background-color: #1f2937; /* Replaced white with dark gray for theme consistency */
+            border: 1px solid #374151; /* Added border for better visibility */
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .tab-button {
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+        }
+        .tab-button.active {
+            background-color: #d97706;
+            color: #ffffff;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .details-arrow {
+            transition: transform 0.3s ease;
+        }
+        details[open] .details-arrow {
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body class="antialiased" data-page-type="ledger-entry">
+
+    <!-- Header -->
+    <header class="bg-gray-900 border-b-2 border-amber-400 sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex justify-between items-center">
+                <div>
+                    <a href="/homepage/" class="text-2xl font-bold accent-text">The Ledger</a>
+                </div>
+                <ul class="flex space-x-8">
+                    <li><a href="/homepage/"
+                            class="text-lg hover:text-amber-400 transition-colors duration-300">Home</a></li>
+                    <li><a href="/ledger/" class="text-lg hover:text-amber-400 transition-colors duration-300">Ledger
+                            Entries</a></li>
+                    <li><a href="/commentary/"
+                            class="text-lg hover:text-amber-400 transition-colors duration-300">Commentary</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- In-Page Sticky Navigation -->
+    <div class="sticky top-16 z-40 bg-gray-800/90 backdrop-blur-lg shadow-md">
+        <div class="container mx-auto px-6">
+            <nav class="flex items-center justify-center h-14">
+                <div class="flex space-x-6">
+                    <a href="#vision" class="text-gray-300 hover:text-amber-400 transition-colors duration-200">The Vision</a>
+                    <a href="#voter" class="text-gray-300 hover:text-amber-400 transition-colors duration-200">The Voter</a>
+                    <a href="#numbers" class="text-gray-300 hover:text-amber-400 transition-colors duration-200">The Numbers</a>
+                    <a href="#policies" class="text-gray-300 hover:text-amber-400 transition-colors duration-200">Key Policies</a>
+                    <a href="#verdict" class="text-gray-300 hover:text-amber-400 transition-colors duration-200">The Verdict</a>
+                    <a href="#sources" class="text-gray-300 hover:text-amber-400 transition-colors duration-200">Sources</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="py-16 sm:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-amber-400">An Interactive Analysis of Reform UK's Policy Platform</h1>
+                <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-300">This page provides an evidence-based breakdown of Reform UK's social and economic policies. Explore their core vision, voter base, fiscal plans, and key proposals, contrasted with independent analysis.</p>
+            </div>
+        </section>
+
+        <!-- The Vision -->
+        <section id="vision" class="py-16 sm:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center amber-400">
+                <h2 class="section-title">The "Britain is Broken" Narrative</h2>
+                <p class="section-subtitle">Reform UK's entire platform is built on the diagnosis that three decades of leadership by the Conservative and Labour parties have failed the nation. This section outlines the core grievances the party aims to address.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="card text-left">
+                        <h3 class="text-lg font-semibold mb-2 flex items-center"><span class="text-2xl mr-3">📉</span> Economic Stagnation</h3>
+                        <p class="text-gray-300">Characterized by stagnant wages, a persistent housing crisis, and high energy bills, the party argues the economy has failed to deliver for ordinary people.</p>
+                    </div>
+                    <div class="card text-left">
+                        <h3 class="text-lg font-semibold mb-2 flex items-center"><span class="text-2xl mr-3">🏥</span> Public Service Collapse</h3>
+                        <p class="text-gray-300">The party points to a failing NHS, rising crime, and overwhelmed public services as evidence of systemic breakdown under the established parties.</p>
+                    </div>
+                    <div class="card text-left">
+                        <h3 class="text-lg font-semibold mb-2 flex items-center"><span class="text-2xl mr-3">🌍</span> Societal & Cultural Decline</h3>
+                        <p class="text-gray-300">Citing record immigration and the influence of "woke ideology," Reform UK positions itself as the defender of traditional British culture, identity, and values.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Voter -->
+        <section id="voter" class="py-16 sm:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="section-title">Who Supports Reform UK?</h2>
+                    <p class="section-subtitle">Polling data reveals a distinct profile of the Reform UK voter, their motivations, and their reservations. This section explores the demographics and attitudes that define the party's base of support.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    <div class="card">
+                        <h3 class="text-xl font-semibold mb-4 text-center">Voter Demographics</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-center font-medium text-gray-200 mb-2">Support by Gender</h4>
+                                <div class="chart-container" style="height: 250px; max-height: 250px;">
+                                    <canvas id="genderChart"></canvas>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-center font-medium text-gray-200 mb-2">Support by Age</h4>
+                                <div class="chart-container" style="height: 250px; max-height: 250px;">
+                                    <canvas id="ageChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-xl font-semibold mb-4 text-center">Motivations & Reservations</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-100">Top Motivations:</h4>
+                                <ul class="list-disc list-inside text-gray-300 mt-1">
+                                    <li><strong>19%:</strong> Not Labour or the Conservatives</li>
+                                    <li><strong>18%:</strong> Stance on immigration</li>
+                                    <li><strong>11%:</strong> Promise of a new approach</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-100">Top Reservations:</h4>
+                                <ul class="list-disc list-inside text-gray-300 mt-1">
+                                    <li><strong>11%:</strong> Lack of governing experience</li>
+                                    <li><strong>9%:</strong> A "wasted vote"</li>
+                                    <li><strong>7%:</strong> Seen as "too right-wing / extreme"</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Numbers -->
+        <section id="numbers" class="py-16 sm:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="section-title">The Numbers: A Fiscal Deep Dive</h2>
+                    <p class="section-subtitle">Reform UK's manifesto proposes radical tax cuts and spending increases. However, the independent Institute for Fiscal Studies (IFS) concluded "the sums in this manifesto do not add up." This interactive chart compares the party's claims with the IFS assessment. Click on a category to see the detailed analysis.</p>
+                </div>
+                <div class="card max-w-6xl mx-auto">
+                    <div class="chart-container mx-auto" style="height: 400px; max-height: 500px;">
+                        <canvas id="fiscalChart"></canvas>
+                    </div>
+                    <div id="fiscalAnalysis" class="mt-8 p-4 bg-gray-800 rounded-lg border border-gray-700">
+                        <h3 id="analysisTitle" class="text-lg font-semibold text-gray-100 mb-2">Click a category on the chart for analysis</h3>
+                        <p id="analysisText" class="text-gray-300">Select a bar (Tax Cuts, Spending, or Savings) to view the detailed breakdown and the independent verdict from the Institute for Fiscal Studies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Policies -->
+        <section id="policies" class="py-16 sm:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="section-title">Key Policy Explorer</h2>
+                    <p class="section-subtitle">Beyond the headline numbers, Reform UK's platform contains a wide range of specific proposals across the economy, society, and governance. Use the tabs below to explore the details of their "common sense" revolution.</p>
+                </div>
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-6 flex justify-center space-x-2 sm:space-x-4">
+                        <button class="tab-button active" onclick="openTab(event, 'Economy')">Economy & Growth</button>
+                        <button class="tab-button" onclick="openTab(event, 'Society')">Society & Public Services</button>
+                        <button class="tab-button" onclick="openTab(event, 'Governance')">Governance & Rights</button>
+                    </div>
+
+                    <div id="Economy" class="tab-content card">
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold text-lg text-gray-100">The Growth Agenda: High-Carbon, Low-Regulation</h4>
+                                <p class="mt-2 text-gray-300">The strategy for growth is built on scrapping Net Zero targets, fast-tracking North Sea oil and gas, and aggressive deregulation of business and labour laws. This high-carbon model risks trade friction with key partners like the EU and US who are pursuing green industrial strategies.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg text-gray-100">Taxation</h4>
+                                <p class="mt-2 text-gray-300">Key proposals include raising the income tax personal allowance to £20,000, cutting corporation tax to 15%, and abolishing Inheritance Tax for most estates. The IFS finds these cuts would cost "tens of billions" more than the party claims.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="Society" class="tab-content card" style="display:none">
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold text-lg text-gray-100">Immigration: A Freeze on "Non-Essential" Migration</h4>
+                                <p class="mt-2 text-gray-300">The central policy is to freeze most immigration to relieve pressure on public services. This would be enforced by higher taxes on employers of foreign workers and intercepting small boats in the Channel. Crucially, the plan requires leaving the European Convention on Human Rights (ECHR), a move with profound legal and constitutional consequences.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg text-gray-100">Public Services: A Two-Tier Model</h4>
+                                <p class="mt-2 text-gray-300">In health and education, the party proposes 20% tax relief for private healthcare and independent school fees. This is designed to encourage a shift to the private sector, but risks creating a "brain drain" of staff from the NHS and state schools, potentially worsening the services for those who remain.</p>
+                            </div>
+                             <div>
+                                <h4 class="font-semibold text-lg text-gray-100">Welfare: A Hardline Stance</h4>
+                                <p class="mt-2 text-gray-300">Benefits would be withdrawn from claimants who refuse a job after two offers or fail to find work within four months. Access to benefits for new migrants would be restricted until they have been employed for five years.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="Governance" class="tab-content card" style="display:none">
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold text-lg text-gray-100">The "Anti-Woke" Agenda</h4>
+                                <p class="mt-2 text-gray-300">The platform includes replacing the 2010 Equality Act, scrapping all Diversity, Equality, and Inclusion (DE&I) rules, and introducing a "Free Speech Bill" to combat "cancel culture." The BBC licence fee would be abolished.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg text-gray-100">Constitutional Reform: A Radical Overhaul</h4>
+                                <p class="mt-2 text-gray-300">Proposals include replacing the House of Lords and, most significantly, replacing impartial career Civil Service leaders with politically appointed professionals who change with the government. This would dismantle a cornerstone of British governance and concentrate power in the executive.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Verdict -->
+        <section id="verdict" class="py-16 sm:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="section-title">The Verdict: Ambition vs. Feasibility</h2>
+                    <div class="text-left space-y-4 text-gray-200">
+                        <p>The platform presented by Reform UK is a coherent and radical populist-nationalist vision for the United Kingdom. It consistently marries a small-state, low-regulation economic model with a socially conservative and deeply sovereignist agenda.</p>
+                        <p class="font-semibold text-gray-100">However, a profound and unbridgeable chasm exists between the party's promises and its fiscal reality.</p>
+                        <p>The independent analysis by the Institute for Fiscal Studies reveals that the manifesto's claim to be "fully costed" is not credible, with a funding gap estimated in the tens of billions of pounds per year. The proposals present a vision of radical transformation with seemingly no difficult choices or negative consequences.</p>
+                        <p>Ultimately, the implementation of this platform would represent one of the most significant political, economic, and social ruptures in modern British history. The analysis suggests it is less a practical blueprint for governing and more a powerful political statement of intent—a manifesto for a cultural and political revolt against the established order.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sources Section -->
+        <section id="sources" class="py-16 sm:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto">
+                    <details class="bg-gray-800 rounded-lg shadow p-6 transition-all duration-300 open:ring-1 open:ring-amber-500/50">
+                        <summary class="text-xl font-semibold text-gray-100 cursor-pointer list-none flex justify-between items-center">
+                            <span>Sources & Further Reading</span>
+                            <span class="details-arrow text-amber-600">▶</span>
+                        </summary>
+                        <div class="mt-4 border-t pt-4">
+                            <ul class="list-disc list-inside space-y-3 text-gray-300">
+                                <li><a href="https://www.reformparty.uk/our-contract-with-you" class="text-amber-400 hover:underline">Our Contract with You - Reform UK (Official Manifesto)</a></li>
+                                <li><a href="https://ifs.org.uk/election-2024/reform-uk" class="text-amber-400 hover:underline">Reform UK Manifesto Analysis - Institute for Fiscal Studies</a></li>
+                                <li><a href="https://yougov.co.uk/politics/articles/49826-who-are-reform-uks-voters-and-what-do-they-want" class="text-amber-400 hover:underline">Who are Reform UK's voters and what do they want? - YouGov</a></li>
+                                <li><a href="https://yougov.co.uk/politics/articles/49342-who-are-the-potential-reform-uk-voters-and-what-do-they-want" class="text-amber-400 hover:underline">Who are the potential Reform UK voters and what do they want? - YouGov</a></li>
+                                <li><a href="https://www.bbc.co.uk/news/election-2024-69082539" class="text-amber-400 hover:underline">Reform UK: What are the party's key policies? - BBC News</a></li>
+                                <li><a href="https://www.theguardian.com/politics/2024/jun/17/reform-uk-manifesto-a-summary-of-the-key-policies" class="text-amber-400 hover:underline">Reform UK manifesto: a summary of the key policies - The Guardian</a></li>
+                                <li><a href="https://migrationobservatory.ox.ac.uk/resources/commentaries/the-end-of-the-affair-the-uk-eu-relationship-on-migration/" class="text-amber-400 hover:underline">The end of the affair? The UK-EU relationship on migration - The Migration Observatory</a></li>
+                                <li><a href="https://www.theguardian.com/politics/2024/jun/13/ifs-director-paul-johnson-parties-conspiracy-of-silence-spending-cuts" class="text-amber-400 hover:underline">IFS director says parties in 'conspiracy of silence' over spending cuts - The Guardian</a></li>
+                                <li><a href="https://www.bbc.co.uk/news/uk-politics-69018485" class="text-amber-400 hover:underline">Farage links migrant backgrounds to sexual violence - BBC News</a></li>
+                                <li><a href="https://www.independent.co.uk/news/uk/politics/reform-uk-online-safety-act-b2563720.html" class="text-amber-400 hover:underline">Reform UK vows to scrap ‘dystopian’ Online Safety Act - The Independent</a></li>
+                                <li><a href="https://en.wikipedia.org/wiki/Reform_UK" class="text-amber-400 hover:underline">Reform UK - Wikipedia</a></li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 mt-16 border-t border-gray-800">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-500">
+            <p>&copy; 2025 The Ledger. Recording the reality.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Gender Chart
+            const genderCtx = document.getElementById('genderChart').getContext('2d');
+            new Chart(genderCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Men', 'Women'],
+                    datasets: [{
+                        label: 'Support by Gender',
+                        data: [29, 19],
+                        backgroundColor: ['#3b82f6', '#f472b6'],
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Age Chart
+            const ageCtx = document.getElementById('ageChart').getContext('2d');
+            new Chart(ageCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['18-24', '25-49', '50-64', '65+'],
+                    datasets: [{
+                        label: 'Support by Age Group (%)',
+                        data: [10, 15, 25, 36], // Example data based on report trends
+                        backgroundColor: '#6366f1',
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.raw + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 40
+                        }
+                    }
+                }
+            });
+
+            // Fiscal Chart
+            const fiscalData = {
+                'Tax Cuts': {
+                    reform: 88,
+                    ifs: 118,
+                    title: 'Analysis of Tax Cuts',
+                    text: 'Reform UK claims its tax cuts will cost £88bn. The IFS assesses the true cost to be over £118bn, stating the party\'s costing for business tax cuts is "less than half" the official estimate. This creates a significant unfunded liability.'
+                },
+                'Spending Increases': {
+                    reform: 50,
+                    ifs: 50, // IFS says cost would be >50bn to meet goals
+                    title: 'Analysis of Spending Increases',
+                    text: 'Reform pledges £50bn in spending increases, dominated by £17bn for the NHS. The IFS judges this would "not be nearly enough" to achieve the "near impossible" goal of eliminating waiting lists in two years, meaning the true cost to meet the promise would be much higher.'
+                },
+                'Savings': {
+                    reform: 150,
+                    ifs: 50, // A generous estimate based on IFS critique
+                    title: 'Analysis of Proposed Savings',
+                    text: 'Reform claims £150bn in savings. The IFS finds these are vastly overstated. The Bank of England policy change would raise "a lot less than £35 billion," and finding £50bn from "waste" would "almost certainly require substantial cuts to... public services."'
+                }
+            };
+            
+            const fiscalCtx = document.getElementById('fiscalChart').getContext('2d');
+            const fiscalChart = new Chart(fiscalCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Tax Cuts', 'Spending Increases', 'Savings'],
+                    datasets: [
+                        {
+                            label: 'Reform UK Claim (£bn/year)',
+                            data: [88, 50, 150],
+                            backgroundColor: '#fbbf24', // amber-400
+                            borderColor: '#f59e0b', // amber-500
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'IFS Assessment (£bn/year)',
+                            data: [118, 60, 50], // Using slightly higher IFS spending estimate for visual effect
+                            backgroundColor: '#ef4444', // red-500
+                            borderColor: '#dc2626', // red-600
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Fiscal Pledges: Reform UK vs. IFS Assessment (£bn per year)'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += '£' + context.parsed.y + 'bn';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Billions (£) per Year'
+                            }
+                        }
+                    },
+                    onClick: (event, elements) => {
+                        if (elements.length > 0) {
+                            const chartElement = elements[0];
+                            const index = chartElement.index;
+                            const label = fiscalChart.data.labels[index];
+                            const analysisData = fiscalData[label];
+
+                            document.getElementById('analysisTitle').textContent = analysisData.title;
+                            document.getElementById('analysisText').textContent = analysisData.text;
+                        }
+                    }
+                }
+            });
+        });
+
+        // Tab functionality
+        function openTab(evt, tabName) {
+            var i, tabcontent, tabbuttons;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

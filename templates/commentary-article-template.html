@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Ledger // Ledger Entries</title>
+    <title>The Ledger // [ARTICLE TITLE]</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
-<body class="antialiased" data-page-type="ledger">
+<body class="antialiased">
 
     <!-- Header -->
     <header class="bg-gray-900 border-b-2 border-amber-400 sticky top-0 z-50">
@@ -37,10 +37,21 @@
 
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-20">
-        <h1 class="text-4xl font-bold mb-12 text-center">All Ledger Entries</h1>
-        <div id="repository-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Ledger entries will be loaded here by repository.js -->
-        </div>
+        <article class="prose prose-invert max-w-4xl mx-auto">
+            <h1>[Article Title Here]</h1>
+            <p class="text-lg text-gray-400">[A brief, one-sentence summary of the article's main argument or perspective goes here.]</p>
+            <hr>
+
+            <h2>1. Introduction</h2>
+            <p>Your introduction goes here. Set the stage for your analysis and state your main thesis. The tone can be more personal and passionate than a Ledger entry, but must still be rooted in reason and evidence.</p>
+
+            <h2>2. Main Argument</h2>
+            <p>Develop your main argument here. You can connect the dots, discuss the 'why,' and explore the nuances that data alone can't capture.</p>
+
+            <h2>3. Conclusion</h2>
+            <p>Summarize your argument and offer your final perspective. This is where you can explore potential solutions or share your informed opinion.</p>
+
+        </article>
     </main>
 
     <!-- Footer -->
@@ -50,7 +61,6 @@
         </div>
     </footer>
 
-<script src="/assets/js/repository.js"></script>
 </body>
 
 </html>
