@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Lora:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
-<body class="antialiased">
+<body class="antialiased" data-page-type="commentary">
 
     <!-- Header -->
     <header class="bg-gray-900 border-b-2 border-amber-400">
@@ -31,25 +31,8 @@
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-20">
         <h1 class="text-4xl font-bold mb-12 text-center">All Commentary</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Commentary Card 1: Placeholder -->
-            <!-- See Section 2 for card design -->
-            <div class="commentary-card bg-gray-800 rounded-lg p-6 border-l-4 border-sky-400 hover:border-sky-300 transition-colors duration-300">
-                <p class="text-sm text-gray-400 mb-2 font-semibold tracking-wider">COMMENTARY // ALISTAIR FINCH</p>
-                <h3 class="text-2xl font-bold mb-3 text-gray-50">On the Illusion of Choice</h3>
-                <p class="text-gray-300 mb-4">While the data points one way, the political narrative is a masterclass in misdirection. We explore the rhetoric shaping public opinion, regardless of the facts.</p>
-                <a href="#" class="text-sky-400 hover:text-sky-300 font-semibold transition-colors duration-300">Read the Full Piece &rarr;</a>
-            </div>
-            <!-- End Commentary Card -->
-
-            <!-- Commentary Card 2: Placeholder -->
-            <div class="commentary-card bg-gray-800 rounded-lg p-6 border-l-4 border-sky-400 hover:border-sky-300 transition-colors duration-300">
-                <p class="text-sm text-gray-400 mb-2 font-semibold tracking-wider">COMMENTARY // ELEANOR VANCE</p>
-                <h3 class="text-2xl font-bold mb-3 text-gray-50">The Data We Ignore</h3>
-                <p class="text-gray-300 mb-4">The most revealing numbers are often the ones left out of the debate. A look at what's missing from the current conversation about national infrastructure.</p>
-                <a href="#" class="text-sky-400 hover:text-sky-300 font-semibold transition-colors duration-300">Read the Full Piece &rarr;</a>
-            </div>
-            <!-- End Commentary Card -->
+        <div id="repository-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Commentary entries will be loaded here by repository.js -->
         </div>
     </main>
 
@@ -60,5 +43,6 @@
         </div>
     </footer>
 
+<script src="/assets/js/repository.js"></script>
 </body>
 </html>
