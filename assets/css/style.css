@@ -3,12 +3,12 @@
     --sky-500: #0ea5e9;
 }
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     background-color: #111827; /* bg-gray-900 */
     color: #d1d5db; /* text-gray-300 */
 }
 h1, h2, h3 {
-    font-family: 'Lora', serif;
+    font-family: 'Playfair Display', serif;
     color: #f9fafb; /* text-gray-50 */
 }
 .report-card {
@@ -67,7 +67,6 @@ html, body {
     overflow: visible !important;
 }
 body {
-    font-family: 'Lora', serif;
     /* background-color removed to allow dark theme to apply */
     color: #ccc; /* Adjusted for dark theme readability */
 }
