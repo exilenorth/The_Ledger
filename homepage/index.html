@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ledger // Just the facts. Not the spin.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="bg-gray-900 border-b-2 border-amber-400">
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex justify-between items-center">
+                <div>
+                    <a href="/homepage/" class="text-2xl font-bold accent-text">The Ledger</a>
+                </div>
+                <ul class="flex space-x-8">
+                    <li><a href="/homepage/" class="text-lg hover:text-amber-400 transition-colors duration-300">Home</a></li>
+                    <li><a href="/ledger/" class="text-lg hover:text-amber-400 transition-colors duration-300">Ledger Entries</a></li>
+                    <li><a href="/commentary/" class="text-lg hover:text-amber-400 transition-colors duration-300">Commentary</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mission Explainer Section -->
+    <section class="bg-gray-800 py-16">
+        <div class="container mx-auto px-6 text-center max-w-4xl">
+            <h2 class="text-3xl font-bold mb-4">Our Mission</h2>
+            <p class="text-lg text-gray-300 leading-relaxed">
+                In an era of intense political tribalism, the UK's public discourse is dominated by spin and ideology. We believe that citizens deserve access to clear, objective, and data-driven analysis to make their own informed decisions. The Ledger exists to cut through the noise by providing the unfiltered data and non-partisan analysis that is often missing from the headlines. We don't tell you what to think; we give you the tools to think for yourself.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <!-- Main Content: Two-Pillar Structure -->
+<main class="container mx-auto px-6 py-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+
+        <!-- Pillar 1: The Ledger -->
+        <div>
+            <h2 class="text-3xl font-bold mb-12 text-center lg:text-left">Recent Ledger Entries</h2>
+            <div id="ledger-entries" class="grid grid-cols-1 md:grid-cols-1 gap-8">
+                <!-- Ledger entries will be loaded here by homepage.js -->
+            </div>
+        </div>
+
+        <!-- Pillar 2: The Commentary -->
+        <div>
+            <h2 class="text-3xl font-bold mb-12 text-center lg:text-left">Latest Commentary</h2>
+            <div id="commentary-entries" class="space-y-8">
+                <!-- Commentary entries will be loaded here by homepage.js -->
+            </div>
+        </div>
+
+    </div>
+</main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 mt-16 border-t border-gray-800">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-500">
+            <p>&copy; 2025 The Ledger. Recording the reality.</p>
+        </div>
+    </footer>
+
+<script src="/assets/js/homepage.js"></script>
+</body>
+</html>
