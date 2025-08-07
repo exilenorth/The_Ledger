@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ledger // Ledger Entries</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="bg-gray-900 border-b-2 border-amber-400">
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex justify-between items-center">
+                <div>
+                    <a href="/index.html" class="text-2xl font-bold accent-text">The Ledger</a>
+                </div>
+                <ul class="flex space-x-8">
+                    <li><a href="/index.html" class="text-lg hover:text-amber-400 transition-colors duration-300">Home</a></li>
+                    <li><a href="/ledger/" class="text-lg hover:text-amber-400 transition-colors duration-300">Ledger Entries</a></li>
+                    <li><a href="/commentary/" class="text-lg hover:text-amber-400 transition-colors duration-300">Commentary</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-20">
+        <h1 class="text-4xl font-bold mb-12 text-center">All Ledger Entries</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Report Card 1: Your Infographic -->
+            <div class="report-card bg-gray-800 rounded-lg overflow-hidden">
+                <div class="p-8 flex flex-col h-full">
+                    <p class="text-sm text-gray-400 mb-2 font-semibold tracking-wider">ENTRY // 07 AUG 2025</p>
+                    <h3 class="text-2xl font-bold mb-3">Fiscal Reality Check: Pensions Triple Lock vs Asylum</h3>
+                    <p class="text-gray-300 mb-6 flex-grow">Forget the headlines. This is the direct fiscal comparison of two of the UK's most contentious policies. The numbers may surprise you.</p>
+                    <a href="/ledger/fiscal-analysis-infographic.html" class="cta-button mt-auto inline-block font-bold py-2 px-5 rounded text-center transition-colors duration-300">
+                        View the Entry
+                    </a>
+                </div>
+            </div>
+            <!-- End Report Card -->
+
+            <!-- Report Card 2: Placeholder -->
+            <div class="report-card bg-gray-800 rounded-lg overflow-hidden">
+                <div class="p-8 flex flex-col h-full">
+                    <p class="text-sm text-gray-400 mb-2 font-semibold tracking-wider">ENTRY // PENDING</p>
+                    <h3 class="text-2xl font-bold mb-3">Future Analysis Title</h3>
+                    <p class="text-gray-300 mb-6 flex-grow">A brief, no-nonsense summary of the next topic under the microscope will go here.</p>
+                    <a href="#" class="mt-auto inline-block bg-gray-600 text-gray-400 font-bold py-2 px-5 rounded text-center cursor-not-allowed">
+                        Entry Pending
+                    </a>
+                </div>
+            </div>
+            <!-- End Report Card -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 mt-16 border-t border-gray-800">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-500">
+            <p>&copy; 2025 The Ledger. Recording the reality.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
