@@ -42,7 +42,7 @@ function loadNewsTicker() {
     if (!headlinesContainer) return;
 
     const newsFeeds = [
-        { name: 'BBC', url: 'http://feeds.bbci.co.uk/news/politics/rss.xml' },
+        { name: 'BBC News', url: 'http://feeds.bbci.co.uk/news/politics/rss.xml' },
         { name: 'Reuters', url: 'http://feeds.reuters.com/reuters/UKNews' },
         { name: 'GBNews', url: 'https://www.gbnews.com/feeds/politics.rss' }
     ];
