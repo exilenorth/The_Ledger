@@ -6,10 +6,8 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 headerPlaceholder.innerHTML = data;
                 
-                // Now that the header is loaded, we can run the news ticker logic
                 loadNewsTicker();
 
-                // Homepage-specific logic
                 if (document.body.id === 'home-page') {
                     const logoLink = headerPlaceholder.querySelector('a[href="/"]');
                     if (logoLink) {
@@ -43,29 +41,46 @@ function loadNewsTicker() {
     const headlinesContainer = document.getElementById('ticker-headlines');
     if (!headlinesContainer) return;
 
-    // This is a publicly available RSS feed for the BBC News UK front page
-    const bbcRssUrl = 'http://feeds.bbci.co.uk/news/politics/rss.xml';
+    // Array of news sources
+    const newsFeeds = [
+        { name: 'BBC', url: 'http://feeds.bbci.co.uk/news/politics/rss.xml' },
+        { name: 'Reuters', url: 'http://feeds.reuters.com/reuters/UKNews' },
+        { name: 'GBNews', url: 'https://www.gbnews.com/feeds/politics.rss' }
+    ];
 
-    // Because of browser security (CORS), we can't fetch the XML directly.
-    // We use a free, public proxy to convert the XML to JSON for us.
-    const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(bbcRssUrl)}`;
+    // Use a proxy to convert RSS (XML) to JSON
+    const proxyUrl = 'https://api.rss2json.com/v1/api.json?rss_url=';
 
-    fetch(proxyUrl)
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'ok') {
-                const items = data.items;
-                let headlinesHtml = '';
-                items.forEach(item => {
-                    headlinesHtml += `<li><a href="${item.link}" target="_blank">${item.title}</a></li>`;
-                });
-                headlinesContainer.innerHTML = headlinesHtml;
-            } else {
-                throw new Error('Failed to load news feed.');
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching news ticker data:', error);
-            headlinesContainer.innerHTML = '<li>Headlines are currently unavailable.</li>';
+    // Fetch all feeds in parallel
+    Promise.all(
+        newsFeeds.map(feed => 
+            fetch(proxyUrl + encodeURIComponent(feed.url))
+                .then(response => response.json())
+                .then(data => {
+                    // Tag each headline with its source name
+                    if (data.status === 'ok') {
+                        return data.items.map(item => ({ ...item, source: feed.name }));
+                    }
+                    return []; // Return empty array on failure
+                })
+        )
+    )
+    .then(results => {
+        // Flatten the array of arrays into a single list of headlines
+        let allHeadlines = [].concat(...results);
+
+        // Shuffle the combined headlines for a mixed ticker
+        allHeadlines.sort(() => Math.random() - 0.5);
+
+        let headlinesHtml = '';
+        allHeadlines.forEach(item => {
+            headlinesHtml += `<li><span class="ticker-source">${item.source}:</span><a href="${item.link}" target="_blank">${item.title}</a></li>`;
         });
+
+        headlinesContainer.innerHTML = headlinesHtml;
+    })
+    .catch(error => {
+        console.error('Error fetching multi-source news feed:', error);
+        headlinesContainer.innerHTML = '<li>Headlines are currently unavailable.</li>';
+    });
 }

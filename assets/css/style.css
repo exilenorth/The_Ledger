@@ -237,7 +237,7 @@ details[open] .details-arrow {
 #news-ticker {
     display: inline-block;
     padding-left: 100%;
-    animation: ticker-scroll 45s linear infinite;
+    animation: ticker-scroll 90s linear infinite;
 }
 
 #news-ticker .ticker-label {
@@ -274,5 +274,10 @@ details[open] .details-arrow {
 /* The scrolling animation */
 @keyframes ticker-scroll {
     0%   { transform: translateX(0); }
-    100% { transform: translateX(-40%); }
+    100% { transform: translateX(-100%); }
+}
+.ticker-source {
+    font-weight: 600;
+    color: #9ca3af; /* A neutral gray */
+    margin-right: 8px;
 }
