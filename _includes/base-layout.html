@@ -15,10 +15,16 @@
         <div class="container mx-auto px-6 py-4">
             <nav class="flex justify-between items-center">
                 <div>
-                    <a href="/" class="flex items-center">
-                        <img src="/assets/gfx/Logo.png" alt="The Ledger Logo" class="h-28 w-auto">
-                    </a>
-                </div>
+    <a href="/" class="flex items-center">
+        {% if page.url == '/' %}
+            {# On the homepage, show the text title #}
+            <span class="text-3xl font-bold text-amber-400">The Ledger</span>
+        {% else %}
+            {# On all other pages, show the logo image #}
+            <img src="/assets/gfx/Logo.png" alt="The Ledger Logo" class="h-28 w-auto">
+        {% endif %}
+    </a>
+</div>
                 <ul class="flex space-x-8 items-center">
                     <li><a href="/" class="text-lg hover:text-amber-400 transition-colors duration-300">Home</a></li>
                     <li><a href="/archive/" class="text-lg hover:text-amber-400 transition-colors duration-300">Archive</a></li>
