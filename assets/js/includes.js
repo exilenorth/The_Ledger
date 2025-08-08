@@ -41,10 +41,12 @@ function loadNewsTicker() {
     const headlinesContainer = document.getElementById('ticker-headlines');
     if (!headlinesContainer) return;
 
+    // UPDATED: Added a 'logo' property to each news source
     const newsFeeds = [
-        { name: 'BBC News', url: 'http://feeds.bbci.co.uk/news/politics/rss.xml' },
-        { name: 'Reuters', url: 'http://feeds.reuters.com/reuters/UKNews' },
-        { name: 'GBNews', url: 'https://www.gbnews.com/feeds/politics.rss' }
+        { name: 'BBC', url: 'http://feeds.bbci.co.uk/news/politics/rss.xml', logo: '/assets/gfx/news_logos/bbc_logo.png' },
+        { name: 'Reuters', url: 'https://openrss.org/www.reuters.com/world/', logo: '/assets/gfx/news_logos/reuters_logo.png' },
+        { name: 'GBNews', url: 'https://www.gbnews.com/feeds/politics.rss', logo: '/assets/gfx/news_logos/gbnews_logo.png' },
+        
     ];
 
     const proxyUrl = 'https://api.rss2json.com/v1/api.json?rss_url=';
@@ -55,7 +57,8 @@ function loadNewsTicker() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'ok') {
-                        return data.items.map(item => ({ ...item, source: feed.name }));
+                        // Tag each item with the full feed info, including the logo
+                        return data.items.map(item => ({ ...item, source: feed }));
                     }
                     return [];
                 })
@@ -67,8 +70,8 @@ function loadNewsTicker() {
 
         let headlinesHtml = '';
         allHeadlines.forEach(item => {
-            // This is the updated line
-            headlinesHtml += `<li><span class="ticker-source source-${item.source.toLowerCase()}">${item.source}:</span><a href="${item.link}" target="_blank">${item.title}</a></li>`;
+            // UPDATED: Creates an <img> tag for the logo
+            headlinesHtml += `<li><img src="${item.source.logo}" alt="${item.source.name} logo" class="ticker-logo"><a href="${item.link}" target="_blank">${item.title}</a></li>`;
         });
 
         headlinesContainer.innerHTML = headlinesHtml;

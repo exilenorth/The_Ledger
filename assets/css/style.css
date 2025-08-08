@@ -281,13 +281,11 @@ details[open] .details-arrow {
     color: #9ca3af; /* A neutral gray */
     margin-right: 8px;
 }
-/* News Ticker Source Colors */
-.ticker-source.source-bbc {
-    color: #FF0000; /* Red */
-}
-.ticker-source.source-reuters {
-    color: #f59e0b; /* Amber */
-}
-.ticker-source.source-gbnews {
-    color: #38bdf8; /* Sky Blue */
+/* News Ticker Logo Styles */
+.ticker-logo {
+    height: 26px; /* This is the key part that controls the size */
+    width: auto;
+    margin-right: 8px;
+    vertical-align: middle; /* This aligns the logos nicely with the text */
+    display: inline-block; /* Ensures proper spacing */
 }
