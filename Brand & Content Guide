@@ -45,9 +45,9 @@ Supporting Greys: A range of greys for cards, borders, and secondary text.
 
 Typography:
 
-Headings (h1, h2, h3): A classic serif font (Lora) to convey authority and seriousness.
+Headings (h1, h2, h3): Roboto to convey authority and seriousness.
 
-Body Text (p, li): A clean, highly-readable sans-serif font (Inter) for clarity and modern appeal.
+Body Text (p, li): Source Sans Pro for clarity and modern appeal.
 
 4. Tone of Voice
 The language used across the site must be consistent with the brand's mission.
