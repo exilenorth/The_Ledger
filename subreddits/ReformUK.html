@@ -1,34 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Ledger // Subreddit</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/assets/css/style.css">
-</head>
-<body class="antialiased">
+---
+layout: base-layout.html
+title: The Ledger // Subreddit r/ReformUK
+---
 
-    <div id="header-placeholder"></div>
-
-    <!-- Main Content -->
-    <main class="container mx-auto px-6 py-20">
+<main class="container mx-auto px-6 py-20">
     <p id="subreddit-explanation" class="text-center text-gray-400 max-w-3xl mx-auto mb-8"></p>
-        <h1 class="text-4xl font-bold mb-4" id="subreddit-title"></h1>
-        <div id="subreddit-posts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Reddit posts will be loaded here -->
+    <h1 class="text-4xl font-bold mb-4" id="subreddit-title"></h1>
+    <div id="subreddit-posts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         </div>
-    </main>
+</main>
 
-    <div id="footer-placeholder"></div>
-
-    <script src="/assets/js/includes.js"></script>
-    <script>
-      const subreddit = 'ReformUK';
-      const subredditLogo = '/assets/gfx/Subreddit_logo/reformuklogo.png';
-    </script>
-    <script src="/assets/js/subreddit.js"></script>
-</body>
-</html>
+<script>
+  const subreddit = 'ReformUK';
+  const subredditLogo = '/assets/gfx/Subreddit_logo/reformuklogo.png';
+</script>
+<script src="/assets/js/subreddit.js"></script>

@@ -1,54 +1,21 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const headerPlaceholder = document.getElementById("header-placeholder");
-    if (headerPlaceholder) {
-        fetch("/_includes/header.html")
-            .then(response => response.text())
-            .then(data => {
-                headerPlaceholder.outerHTML = data;
-                
-                // Re-select the header element from the main document
-                const headerElement = document.querySelector('header');
-                
-                loadNewsTicker();
+    // The header is now built by Eleventy, so we only need to
+    // run the function that loads the news headlines.
+    loadNewsTicker();
 
-                if (document.body.id === 'home-page') {
-                    // Find the logo link within the newly selected header
-                    const logoLink = headerElement.querySelector('a[href="/"]');
-                    if (logoLink) {
-                        const textElement = document.createElement('span');
-                        textElement.className = 'text-3xl font-bold text-amber-400';
-                        textElement.textContent = 'The Ledger';
-                        logoLink.innerHTML = '';
-                        logoLink.appendChild(textElement);
-                    }
-                }
-
-                // START: Calculate header height and apply to sticky-secondary elements
-                const header = document.querySelector('header');
-                if (header) {
-                    const headerHeight = header.offsetHeight;
-                    const secondaryMenus = document.querySelectorAll('.sticky-secondary');
-                    secondaryMenus.forEach(menu => {
-                        menu.style.top = `${headerHeight}px`;
-                    });
-                }
-                // END: Calculate header height and apply to sticky-secondary elements
-            })
-            .catch(error => {
-                console.error('Error fetching header:', error);
-            });
-    }
-
+    // We can also find and clean up the footer placeholder logic here
+    // as it's no longer needed.
     const footerPlaceholder = document.getElementById("footer-placeholder");
     if (footerPlaceholder) {
+        // Create a new element to avoid breaking the DOM if there are scripts after
+        const newFooter = document.createElement('div');
         fetch("/_includes/footer.html")
             .then(response => response.text())
             .then(data => {
-                footerPlaceholder.outerHTML = data;
+                newFooter.innerHTML = data;
+                footerPlaceholder.replaceWith(...newFooter.childNodes);
             })
-            .catch(error => {
-                console.error('Error fetching footer:', error);
-            });
+            .catch(error => console.error('Error fetching footer:', error));
     }
 });
 
@@ -56,23 +23,20 @@ function loadNewsTicker() {
     const headlinesContainer = document.getElementById('ticker-headlines');
     if (!headlinesContainer) return;
 
-    // UPDATED: Added a 'logo' property to each news source
     const newsFeeds = [
         { name: 'BBC', url: 'http://feeds.bbci.co.uk/news/politics/rss.xml', logo: '/assets/gfx/news_logos/bbc_logo.png' },
         { name: 'Reuters', url: 'https://openrss.org/www.reuters.com/world/', logo: '/assets/gfx/news_logos/reuters_logo.png' },
         { name: 'GBNews', url: 'https://www.gbnews.com/feeds/politics.rss', logo: '/assets/gfx/news_logos/gbnews_logo.png' },
-        
     ];
 
     const proxyUrl = 'https://api.rss2json.com/v1/api.json?rss_url=';
 
     Promise.all(
-        newsFeeds.map(feed => 
+        newsFeeds.map(feed =>
             fetch(proxyUrl + encodeURIComponent(feed.url))
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'ok') {
-                        // Tag each item with the full feed info, including the logo
                         return data.items.map(item => ({ ...item, source: feed }));
                     }
                     return [];
@@ -85,7 +49,6 @@ function loadNewsTicker() {
 
         let headlinesHtml = '';
         allHeadlines.forEach(item => {
-            // UPDATED: Creates an <img> tag for the logo
             headlinesHtml += `<li><img src="${item.source.logo}" alt="${item.source.name} logo" class="ticker-logo"><a href="${item.link}" target="_blank">${item.title}</a></li>`;
         });
 

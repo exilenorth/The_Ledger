@@ -1,33 +1,62 @@
-<![CDATA[<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article Archive</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="antialiased">
-    <div id="header-placeholder"></div>
+---
+layout: base-layout.html
+title: The Ledger // Archive
+---
 
-    <main>
-        <div class="sticky sticky-secondary">
-            <div class="archive-header bg-gray-800 z-40">
-                <h2>Article Archive</h2>
-                <div class="filter-buttons">
-                    <button data-filter="all" class="tab-button active">All</button>
-                    <button data-filter="ledger" class="tab-button">Ledger</button>
-                    <button data-filter="commentary" class="tab-button">Commentary</button>
-                </div>
-            </div>
+<main class="container mx-auto px-6 py-12">
+    <div class="archive-header text-center mb-12">
+        <h2 class="text-3xl font-bold mb-6">Article Archive</h2>
+        <div class="filter-buttons inline-flex rounded-md shadow-sm" role="group">
+            <button type="button" data-filter="all" class="tab-button active rounded-l-lg">All</button>
+            <button type="button" data-filter="ledger" class="tab-button">Ledger</button>
+            <button type="button" data-filter="commentary" class="tab-button rounded-r-lg">Commentary</button>
         </div>
-        <div id="archive-container" class="card-container"></div>
-    </main>
+    </div>
+    <div id="archive-container" class="space-y-6">
 
-    <div id="footer-placeholder"></div>
+        {# Statically generate all article cards #}
+        {% set articles = data.ledger.concat(data.commentary) %}
+        {% set sortedArticles = articles | sort(false, false, 'date') | reverse %}
 
-    <script src="/assets/js/includes.js"></script>
-    <script src="/assets/js/archive.js" type="module"></script>
-</body>
-</html>]]>
+        {% for entry in sortedArticles %}
+            {# The 'data-type' attribute is for the filter script #}
+            <div class="archive-card bg-gray-800 rounded-lg p-6 border-l-4 
+                {% if entry.type == 'ENTRY' %}border-amber-400{% else %}border-sky-400{% endif %}"
+                data-type="{% if entry.type == 'ENTRY' %}ledger{% else %}commentary{% endif %}">
+
+                <p class="text-sm text-gray-400 mb-2 font-semibold tracking-wider">
+                    {% if entry.type == 'ENTRY' %}LEDGER{% else %}COMMENTARY{% endif %} // {{ entry.date | formatDate }}
+                </p>
+                <h3 class="text-2xl font-bold mb-3">
+                    <a href="{{ entry.link }}" class="text-gray-50 hover:text-amber-400 transition-colors">{{ entry.title }}</a>
+                </h3>
+                <p class="text-gray-300">{{ entry.summary }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.filter-buttons button');
+    const cards = document.querySelectorAll('.archive-card');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Handle active button style
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const filter = button.dataset.filter;
+
+            cards.forEach(card => {
+                if (filter === 'all' || card.dataset.type === filter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+});
+</script>

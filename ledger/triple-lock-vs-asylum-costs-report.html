@@ -1,350 +1,254 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Ledger // Fiscal Reality Check: Pensions vs Asylum</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <style>
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            background-color: #111827; /* bg-gray-900 */
-            color: #d1d5db; /* text-gray-300 */
-        }
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            color: #f9fafb; /* text-gray-50 */
-        }
-        .prose h2 {
-            font-size: 1.875rem; /* text-3xl */
-            margin-top: 2.5rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #374151; /* border-gray-700 */
-        }
-        .prose h3 {
-            font-size: 1.5rem; /* text-2xl */
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-        .prose p {
-            line-height: 1.75;
-            margin-bottom: 1.25rem;
-        }
-        .prose table {
-            width: 100%;
-            margin-top: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-collapse: collapse;
-        }
-        .prose th, .prose td {
-            border: 1px solid #4b5563; /* border-gray-600 */
-            padding: 0.75rem;
-            text-align: left;
-        }
-        .prose th {
-            background-color: #1f2937; /* bg-gray-800 */
-            font-weight: 600;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin: 2rem auto;
-            height: 350px;
-            max-height: 400px;
-        }
-        @media (max-width: 768px) {
-            .chart-container {
-                height: 300px;
-            }
-        }
-        details > summary {
-            cursor: pointer;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #facc15; /* amber-400 */
-            margin-bottom: 1rem;
-        }
-        details > summary::after {
-            content: ' (Click to expand)';
-            font-size: 1rem;
-            font-family: 'Source Sans Pro', sans-serif;
-            color: #9ca3af; /* gray-400 */
-        }
-        details[open] > summary::after {
-            content: ' (Click to collapse)';
-        }
-        .source-list a {
-            color: #9ca3af;
-            text-decoration: underline;
-            transition: color 0.2s;
-        }
-        .source-list a:hover {
-            color: #facc15;
-        }
-    </style>
-</head>
-<body class="antialiased">
+---
+layout: base-layout.html
+title: The Ledger // Triple Lock vs Asylum Costs Report
+---
+<div class="container mx-auto px-6 py-16">
+    <article class="prose prose-invert max-w-4xl mx-auto">
+        <h2>Axing the 'Triple lock' vs Stopping the Boats - which would save more?</h2>
+        <p>This report provides a comparative fiscal analysis of two prominent and costly areas of UK public policy: the management of asylum and irregular migration, with a focus on small boat crossings, and the state pension triple lock. The objective is to determine which policy area, if fundamentally altered, would yield greater financial savings for the UK government. The analysis moves beyond headline figures to assess the nature, certainty, and long-term trajectory of the costs and potential savings associated with each.</p>
+        <p>The findings are unambiguous. While the costs of managing the asylum system are acute, volatile, and a significant operational challenge, the fiscal burden of the state pension triple lock is substantially larger, more certain, and structurally embedded in the UK's public finances.</p>
+        <p>The total cost of the UK asylum system reached £5.4 billion in the 2023/24 financial year, driven primarily by inefficient and expensive hotel accommodation for asylum seekers. A hypothetical and complete cessation of small boat arrivals could yield annual savings in the low single-digit billions, estimated between £3 billion and £5 billion. However, these savings are highly uncertain, contingent on the success of costly ongoing enforcement measures, and subject to immense external volatility.</p>
+        <p>In contrast, the state pension triple lock—a mechanism that uprates pensions by the highest of inflation, earnings growth, or 2.5%—imposes a direct and recurring additional cost on the Exchequer. Authoritative analysis from the Institute for Fiscal Studies (IFS) quantifies this additional annual cost at approximately £11 billion compared to a simpler indexation method. The Office for Budget Responsibility (OBR) projects this figure will rise to £15.5 billion annually by 2029-30.</p>
+        <p>Therefore, abolishing the triple lock offers immediate, structural, and compounding savings that are at least double the plausible savings from stopping all small boat crossings. The savings from pension reform are a matter of arithmetic and would fundamentally alter the UK's long-term fiscal trajectory by removing a powerful, built-in cost escalator. The savings from halting small boat crossings, while significant, address an operational overspend and remain hypothetical and fiscally precarious. This report concludes that while both issues present major policy challenges, from a purely fiscal perspective, addressing the state pension triple lock represents a far greater opportunity for sustainable, long-term savings for the UK government.</p>
 
-    <div id="header-placeholder"></div>
+        <h2>Section 1: The Fiscal Landscape of UK Asylum and Irregular Migration</h2>
+        <p>The financial commitment required to manage the UK's asylum system and control irregular migration has escalated dramatically in recent years, becoming a significant and unpredictable pressure on the public purse. This section provides a forensic breakdown of these expenditures, analyses the fiscal impact of key policy interventions, and assesses the considerable uncertainty surrounding future costs. The analysis reveals a fiscal crisis driven not only by the number of arrivals but also by profound operational inefficiencies and the high cost of deterrence policies.</p>
+        
+        <h3>1.1 Deconstructing the Costs: A Forensic Breakdown of Expenditure</h3>
+        <p>The total expenditure on the UK asylum system has grown to a substantial scale. In the financial year 2023/24, the cost of operating the system rose to £5.4 billion. This expenditure is managed by the Home Office's Asylum Support, Resettlement, and Accommodation (ASRA) group, which sits within a wider portfolio of departments managing asylum, migration, visas, and passports that spent a total of £9.3 billion in the same period. This overall cost is composed of several distinct and significant components.</p>
+        
+        <h4>Accommodation Costs</h4>
+        <p>The single largest and most volatile driver of expenditure is asylum accommodation. A May 2025 report by the National Audit Office (NAO) revealed that the projected cost of the government's ten-year Asylum Accommodation and Support Contracts (AASCs) has surged from an initial estimate of £4.5 billion to £15.3 billion. This more than threefold increase is attributed to the growing number of people seeking asylum who require housing and, critically, the extensive use of expensive hotels as contingency accommodation.</p>
+        <p>The reliance on hotels represents a significant operational inefficiency. In the 2023-24 financial year, the Home Office spent an estimated £3.1 billion on hotels. These hotels housed only 35% of the people in the asylum accommodation system but accounted for a hugely disproportionate 76% of the total accommodation contract costs. This disparity highlights that the fiscal pressure is not merely a function of the number of asylum seekers but is exacerbated by the method of accommodation.</p>
+        
+        <div class="chart-container">
+            <canvas id="hotelCostChart"></canvas>
+        </div>
+        
+        <h4>Enforcement & Security Costs</h4>
+        <p>A significant portion of the budget is allocated to preventing and managing irregular arrivals. This includes the annual budget for Border Force, substantial payments to France to enhance patrols, and funding for dedicated taskforces. The chart below breaks down some of the key enforcement-related expenditures.</p>
 
-    <div class="container mx-auto px-6 py-16">
-        <article class="prose prose-invert max-w-4xl mx-auto">
-            <h2>Axing the 'Triple lock' vs Stopping the Boats - which would save more?</h2>
-            <p>This report provides a comparative fiscal analysis of two prominent and costly areas of UK public policy: the management of asylum and irregular migration, with a focus on small boat crossings, and the state pension triple lock. The objective is to determine which policy area, if fundamentally altered, would yield greater financial savings for the UK government. The analysis moves beyond headline figures to assess the nature, certainty, and long-term trajectory of the costs and potential savings associated with each.</p>
-            <p>The findings are unambiguous. While the costs of managing the asylum system are acute, volatile, and a significant operational challenge, the fiscal burden of the state pension triple lock is substantially larger, more certain, and structurally embedded in the UK's public finances.</p>
-            <p>The total cost of the UK asylum system reached £5.4 billion in the 2023/24 financial year, driven primarily by inefficient and expensive hotel accommodation for asylum seekers. A hypothetical and complete cessation of small boat arrivals could yield annual savings in the low single-digit billions, estimated between £3 billion and £5 billion. However, these savings are highly uncertain, contingent on the success of costly ongoing enforcement measures, and subject to immense external volatility.</p>
-            <p>In contrast, the state pension triple lock—a mechanism that uprates pensions by the highest of inflation, earnings growth, or 2.5%—imposes a direct and recurring additional cost on the Exchequer. Authoritative analysis from the Institute for Fiscal Studies (IFS) quantifies this additional annual cost at approximately £11 billion compared to a simpler indexation method. The Office for Budget Responsibility (OBR) projects this figure will rise to £15.5 billion annually by 2029-30.</p>
-            <p>Therefore, abolishing the triple lock offers immediate, structural, and compounding savings that are at least double the plausible savings from stopping all small boat crossings. The savings from pension reform are a matter of arithmetic and would fundamentally alter the UK's long-term fiscal trajectory by removing a powerful, built-in cost escalator. The savings from halting small boat crossings, while significant, address an operational overspend and remain hypothetical and fiscally precarious. This report concludes that while both issues present major policy challenges, from a purely fiscal perspective, addressing the state pension triple lock represents a far greater opportunity for sustainable, long-term savings for the UK government.</p>
+        <div class="chart-container">
+            <canvas id="enforcementCostChart"></canvas>
+        </div>
 
-            <h2>Section 1: The Fiscal Landscape of UK Asylum and Irregular Migration</h2>
-            <p>The financial commitment required to manage the UK's asylum system and control irregular migration has escalated dramatically in recent years, becoming a significant and unpredictable pressure on the public purse. This section provides a forensic breakdown of these expenditures, analyses the fiscal impact of key policy interventions, and assesses the considerable uncertainty surrounding future costs. The analysis reveals a fiscal crisis driven not only by the number of arrivals but also by profound operational inefficiencies and the high cost of deterrence policies.</p>
-            
-            <h3>1.1 Deconstructing the Costs: A Forensic Breakdown of Expenditure</h3>
-            <p>The total expenditure on the UK asylum system has grown to a substantial scale. In the financial year 2023/24, the cost of operating the system rose to £5.4 billion. This expenditure is managed by the Home Office's Asylum Support, Resettlement, and Accommodation (ASRA) group, which sits within a wider portfolio of departments managing asylum, migration, visas, and passports that spent a total of £9.3 billion in the same period. This overall cost is composed of several distinct and significant components.</p>
-            
-            <h4>Accommodation Costs</h4>
-            <p>The single largest and most volatile driver of expenditure is asylum accommodation. A May 2025 report by the National Audit Office (NAO) revealed that the projected cost of the government's ten-year Asylum Accommodation and Support Contracts (AASCs) has surged from an initial estimate of £4.5 billion to £15.3 billion. This more than threefold increase is attributed to the growing number of people seeking asylum who require housing and, critically, the extensive use of expensive hotels as contingency accommodation.</p>
-            <p>The reliance on hotels represents a significant operational inefficiency. In the 2023-24 financial year, the Home Office spent an estimated £3.1 billion on hotels. These hotels housed only 35% of the people in the asylum accommodation system but accounted for a hugely disproportionate 76% of the total accommodation contract costs. This disparity highlights that the fiscal pressure is not merely a function of the number of asylum seekers but is exacerbated by the method of accommodation.</p>
-            
-            <div class="chart-container">
-                <canvas id="hotelCostChart"></canvas>
-            </div>
-            
-            <h4>Enforcement & Security Costs</h4>
-            <p>A significant portion of the budget is allocated to preventing and managing irregular arrivals. This includes the annual budget for Border Force, substantial payments to France to enhance patrols, and funding for dedicated taskforces. The chart below breaks down some of the key enforcement-related expenditures.</p>
+        <h3>1.2 Policy Interventions and Their Fiscal Footprint</h3>
+        <p>Successive governments have implemented policies aimed at deterring small boat crossings, but these interventions carry their own significant financial implications. The now-abandoned Migration and Economic Development Partnership with Rwanda provides a stark case study, projected to cost £169,000 per person deported, with a minimum commitment of £370 million to the Rwandan government. This demonstrates a critical paradox: policies designed to solve a high-cost problem can themselves involve substantial, guaranteed upfront expenditure with highly uncertain returns.</p>
 
-            <div class="chart-container">
-                <canvas id="enforcementCostChart"></canvas>
-            </div>
+        <h3>1.3 Projecting the Unpredictable: Future Costs and Volatility</h3>
+        <p>Projecting the future costs of managing asylum and migration is an exercise fraught with uncertainty. The primary driver of this volatility is the number of arrivals. The Home Office has consistently struggled to budget for these volatile costs, with analysis by the IFS showing significant overspending against planned budgets in recent years. This has led to stark warnings that without decisive action, asylum support costs could spiral to £11 billion a year by the end of 2026.</p>
 
-            <h3>1.2 Policy Interventions and Their Fiscal Footprint</h3>
-            <p>Successive governments have implemented policies aimed at deterring small boat crossings, but these interventions carry their own significant financial implications. The now-abandoned Migration and Economic Development Partnership with Rwanda provides a stark case study, projected to cost £169,000 per person deported, with a minimum commitment of £370 million to the Rwandan government. This demonstrates a critical paradox: policies designed to solve a high-cost problem can themselves involve substantial, guaranteed upfront expenditure with highly uncertain returns.</p>
+        <h3>1.4 Quantifying Potential Savings from "Stopping the Boats"</h3>
+        <p>A hypothetical, complete cessation of small boat crossings would eliminate the direct costs associated with processing and supporting those specific arrivals. A central estimate would place this potential annual saving in the range of £3 billion to £5 billion. However, this figure must be treated with considerable caution, as it does not account for the cost of the deterrence measures themselves, which would likely require sustained, and potentially even increased, expenditure.</p>
 
-            <h3>1.3 Projecting the Unpredictable: Future Costs and Volatility</h3>
-            <p>Projecting the future costs of managing asylum and migration is an exercise fraught with uncertainty. The primary driver of this volatility is the number of arrivals. The Home Office has consistently struggled to budget for these volatile costs, with analysis by the IFS showing significant overspending against planned budgets in recent years. This has led to stark warnings that without decisive action, asylum support costs could spiral to £11 billion a year by the end of 2026.</p>
+        <h2>Section 2: The State Pension Triple Lock: A Compounding Fiscal Commitment</h2>
+        <p>In stark contrast to the volatile and operationally driven costs of the asylum system, the financial burden of the state pension triple lock is a structural and compounding feature of the UK's public finances. Introduced as a measure to protect pensioner incomes, its mechanics have created a powerful and predictable upward pressure on government spending.</p>
 
-            <h3>1.4 Quantifying Potential Savings from "Stopping the Boats"</h3>
-            <p>A hypothetical, complete cessation of small boat crossings would eliminate the direct costs associated with processing and supporting those specific arrivals. A central estimate would place this potential annual saving in the range of £3 billion to £5 billion. However, this figure must be treated with considerable caution, as it does not account for the cost of the deterrence measures themselves, which would likely require sustained, and potentially even increased, expenditure.</p>
+        <h3>2.1 Mechanics and the "Ratchet Effect"</h3>
+        <p>The state pension triple lock is a commitment to uprate the State Pension annually by the highest of three metrics: CPI inflation, average earnings growth, or a floor of 2.5%. The policy's defining characteristic is what the OBR has termed the "ratchet effect". Because the pension always increases by the highest of the three measures, its value is systematically pushed upwards over time at a rate that is, on average, faster than any of the individual components.</p>
 
-            <h2>Section 2: The State Pension Triple Lock: A Compounding Fiscal Commitment</h2>
-            <p>In stark contrast to the volatile and operationally driven costs of the asylum system, the financial burden of the state pension triple lock is a structural and compounding feature of the UK's public finances. Introduced as a measure to protect pensioner incomes, its mechanics have created a powerful and predictable upward pressure on government spending.</p>
+        <h3>2.2 Quantifying the Additional Cost of the Triple Lock</h3>
+        <p>According to detailed analysis by the IFS, the triple lock is now costing the government an additional £11 billion per year compared to a scenario where the state pension had been uprated by a simpler method. This additional cost is projected to grow. The OBR forecast that the annual cost of the triple lock will rise to £15.5 billion by the 2029-30 financial year.</p>
+        
+        <div class="chart-container">
+            <canvas id="tripleLockCostChart"></canvas>
+        </div>
 
-            <h3>2.1 Mechanics and the "Ratchet Effect"</h3>
-            <p>The state pension triple lock is a commitment to uprate the State Pension annually by the highest of three metrics: CPI inflation, average earnings growth, or a floor of 2.5%. The policy's defining characteristic is what the OBR has termed the "ratchet effect". Because the pension always increases by the highest of the three measures, its value is systematically pushed upwards over time at a rate that is, on average, faster than any of the individual components.</p>
-
-            <h3>2.2 Quantifying the Additional Cost of the Triple Lock</h3>
-            <p>According to detailed analysis by the IFS, the triple lock is now costing the government an additional £11 billion per year compared to a scenario where the state pension had been uprated by a simpler method. This additional cost is projected to grow. The OBR forecast that the annual cost of the triple lock will rise to £15.5 billion by the 2029-30 financial year.</p>
-            
-            <div class="chart-container">
-                <canvas id="tripleLockCostChart"></canvas>
-            </div>
-
-            <h3>2.3 The Long-Term Trajectory: A Structural Fiscal Pressure</h3>
-            <p>The long-term fiscal impact of the triple lock is profound. State pension spending is forecast to rise from 4.6% of GDP in 2023/24 to 5.1% by 2025/26. Looking further ahead, the OBR projects that total state pension spending will rise by 2.7 percentage points of GDP over the next 50 years. Critically, the triple lock mechanism itself—separate from demographic changes—is responsible for more than half of that projected long-term growth.</p>
-            
-            <h4>The Demographic Pressure Cooker</h4>
-            <p>This fiscal strain is amplified by a significant demographic shift. The number of working-age adults supporting each pensioner is shrinking, meaning a smaller workforce must fund a more expensive, faster-growing pension bill.</p>
-            <div class="bg-gray-800 rounded-lg p-6 my-8 text-center">
-                <h4 class="text-xl font-bold mb-4">Working-Age Adults per Pensioner</h4>
-                <div class="flex justify-around items-center">
-                    <div class="text-center">
-                        <p class="text-5xl font-black text-amber-400">3.4</p>
-                        <p class="font-semibold">Today</p>
-                    </div>
-                    <div class="text-5xl text-gray-600 font-thin">&rarr;</div>
-                    <div class="text-center">
-                        <p class="text-5xl font-black text-amber-500">2.7</p>
-                        <p class="font-semibold">By 2070s</p>
-                    </div>
+        <h3>2.3 The Long-Term Trajectory: A Structural Fiscal Pressure</h3>
+        <p>The long-term fiscal impact of the triple lock is profound. State pension spending is forecast to rise from 4.6% of GDP in 2023/24 to 5.1% by 2025/26. Looking further ahead, the OBR projects that total state pension spending will rise by 2.7 percentage points of GDP over the next 50 years. Critically, the triple lock mechanism itself—separate from demographic changes—is responsible for more than half of that projected long-term growth.</p>
+        
+        <h4>The Demographic Pressure Cooker</h4>
+        <p>This fiscal strain is amplified by a significant demographic shift. The number of working-age adults supporting each pensioner is shrinking, meaning a smaller workforce must fund a more expensive, faster-growing pension bill.</p>
+        <div class="bg-gray-800 rounded-lg p-6 my-8 text-center">
+            <h4 class="text-xl font-bold mb-4">Working-Age Adults per Pensioner</h4>
+            <div class="flex justify-around items-center">
+                <div class="text-center">
+                    <p class="text-5xl font-black text-amber-400">3.4</p>
+                    <p class="font-semibold">Today</p>
+                </div>
+                <div class="text-5xl text-gray-600 font-thin">&rarr;</div>
+                <div class="text-center">
+                    <p class="text-5xl font-black text-amber-500">2.7</p>
+                    <p class="font-semibold">By 2070s</p>
                 </div>
             </div>
+        </div>
 
-            <h3>2.4 Quantifying Potential Savings from Abolishing the Triple Lock</h3>
-            <p>Abolishing the triple lock would generate immediate, recurring, and compounding savings for the Exchequer. The most direct and certain saving would be the £10 billion to £11 billion per annum that the policy is currently estimated to cost over and above simpler indexation methods. This saving would be realised in the first year and would grow over time as the compounding effect of the ratchet is eliminated.</p>
+        <h3>2.4 Quantifying Potential Savings from Abolishing the Triple Lock</h3>
+        <p>Abolishing the triple lock would generate immediate, recurring, and compounding savings for the Exchequer. The most direct and certain saving would be the £10 billion to £11 billion per annum that the policy is currently estimated to cost over and above simpler indexation methods. This saving would be realised in the first year and would grow over time as the compounding effect of the ratchet is eliminated.</p>
 
-            <h2>Section 3: A Comparative Fiscal Reckoning</h2>
-            <p>This section brings the findings from the preceding analysis into direct comparison to provide a definitive answer to the central question: which policy change offers greater financial savings to the UK government?</p>
-            
-            <h3>3.1 Annual Savings: A Direct Comparison</h3>
-            <p>A direct comparison of the potential annual savings from each policy change reveals a stark difference in scale. Abolishing the triple lock offers, at a minimum, double the immediate annual savings of completely stopping all small boat crossings.</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Policy Change</th>
-                        <th>Estimated Annual Saving (Central Estimate)</th>
-                        <th>Fiscal Certainty</th>
-                        <th>Nature of Saving</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Stopping Small Boat Crossings</td>
-                        <td>£3 billion – £5 billion</td>
-                        <td>Low</td>
-                        <td>Volatile, Operational, Contingent</td>
-                    </tr>
-                    <tr>
-                        <td>Abolishing Pensions Triple Lock</td>
-                        <td>£10 billion – £11 billion</td>
-                        <td>High</td>
-                        <td>Structural, Compounding, Certain</td>
-                    </tr>
-                </tbody>
-            </table>
+        <h2>Section 3: A Comparative Fiscal Reckoning</h2>
+        <p>This section brings the findings from the preceding analysis into direct comparison to provide a definitive answer to the central question: which policy change offers greater financial savings to the UK government?</p>
+        
+        <h3>3.1 Annual Savings: A Direct Comparison</h3>
+        <p>A direct comparison of the potential annual savings from each policy change reveals a stark difference in scale. Abolishing the triple lock offers, at a minimum, double the immediate annual savings of completely stopping all small boat crossings.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Policy Change</th>
+                    <th>Estimated Annual Saving (Central Estimate)</th>
+                    <th>Fiscal Certainty</th>
+                    <th>Nature of Saving</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Stopping Small Boat Crossings</td>
+                    <td>£3 billion – £5 billion</td>
+                    <td>Low</td>
+                    <td>Volatile, Operational, Contingent</td>
+                </tr>
+                <tr>
+                    <td>Abolishing Pensions Triple Lock</td>
+                    <td>£10 billion – £11 billion</td>
+                    <td>High</td>
+                    <td>Structural, Compounding, Certain</td>
+                </tr>
+            </tbody>
+        </table>
 
-            <h3>3.2 Long-Term Fiscal Impact and Sustainability</h3>
-            <p>The divergence in fiscal impact becomes even more pronounced when viewed over a multi-decade horizon. The savings from successfully managing immigration are contingent and non-compounding. In contrast, the savings from pension reform are structural and compounding. Stopping small boats addresses an acute operational overspend, akin to plugging a leak in a pipe. Abolishing the triple lock addresses a chronic structural deficit, akin to redesigning the entire plumbing system to use less water permanently.</p>
+        <h3>3.2 Long-Term Fiscal Impact and Sustainability</h3>
+        <p>The divergence in fiscal impact becomes even more pronounced when viewed over a multi-decade horizon. The savings from successfully managing immigration are contingent and non-compounding. In contrast, the savings from pension reform are structural and compounding. Stopping small boats addresses an acute operational overspend, akin to plugging a leak in a pipe. Abolishing the triple lock addresses a chronic structural deficit, akin to redesigning the entire plumbing system to use less water permanently.</p>
 
-            <h3>3.3 An Assessment of Fiscal Certainty</h3>
-            <p>The certainty of savings from immigration policy is low. The estimate is based on achieving a policy outcome that has so far proven elusive. The certainty of savings from pension reform is high, being a matter of arithmetic. This analysis highlights a significant disconnect between the allocation of political capital and the scale of the underlying fiscal challenges.</p>
-            
-            <div class="mt-16">
-                <details>
-                    <summary>View Data Sources</summary>
-                    <ul class="source-list list-disc list-inside mt-4 space-y-2">
-                        <li><a href="https://www.moneyhelper.org.uk/en/pensions-and-retirement/state-pension/state-pension-the-triple-lock" target="_blank" rel="noopener noreferrer">Money Helper - State Pension Triple Lock</a></li>
-                        <li><a href="https://www.unison.org.uk/content/uploads/2023/11/State-Pension-Triple-Lock-briefing.pdf" target="_blank" rel="noopener noreferrer">UNISON - State Pension Triple Lock Briefing</a></li>
-                        <li><a href="https://www.theguardian.com/uk-news/2025/aug/03/ministers-to-spend-extra-100m-on-stopping-small-boat-crossings-to-uk" target="_blank" rel="noopener noreferrer">The Guardian - Ministers to spend extra £100m</a></li>
-                        <li><a href="https://www.ein.org.uk/news/agreement-france-comes-force-allowing-return-asylum-seekers-crossing-channel-small-boat" target="_blank" rel="noopener noreferrer">EIN - Agreement with France comes into force</a></li>
-                        <li><a href="https://www.gov.uk/government/news/uk-france-treaty-targeting-illegal-crossings-comes-into-force" target="_blank" rel="noopener noreferrer">GOV.UK - UK-France treaty targeting illegal crossings</a></li>
-                        <li><a href="https://www.theguardian.com/uk-news/2025/aug/05/uk-to-start-small-boats-returns-to-france-within-days-after-eu-gives-green-light" target="_blank" rel="noopener noreferrer">The Guardian - UK to start small boats returns to France</a></li>
-                        <li><a href="https://www.nao.org.uk/reports/investigation-into-asylum-accommodation/" target="_blank" rel="noopener noreferrer">NAO - Investigation into asylum accommodation</a></li>
-                        <li><a href="https://migrationobservatory.ox.ac.uk/resources/briefings/people-crossing-the-english-channel-in-small-boats/" target="_blank" rel="noopener noreferrer">Migration Observatory - People crossing the English Channel</a></li>
-                        <li><a href="https://obr.uk/frs/fiscal-risks-and-sustainability-july-2025/" target="_blank" rel="noopener noreferrer">OBR - Fiscal risks and sustainability (July 2025)</a></li>
-                        <li><a href="https://ifs.org.uk/articles/triple-lock-uncertainty-pension-incomes-and-public-finances" target="_blank" rel="noopener noreferrer">IFS - The triple lock: uncertainty for pension incomes</a></li>
-                    </ul>
-                </details>
-            </div>
-        </article>
-        <div id="tags-container" class="max-w-4xl mx-auto mt-8"></div>
-        <div id="related-articles-container" class="max-w-7xl mx-auto mt-12 px-4 sm:px-6 lg:px-8"></div>
-    </div>
+        <h3>3.3 An Assessment of Fiscal Certainty</h3>
+        <p>The certainty of savings from immigration policy is low. The estimate is based on achieving a policy outcome that has so far proven elusive. The certainty of savings from pension reform is high, being a matter of arithmetic. This analysis highlights a significant disconnect between the allocation of political capital and the scale of the underlying fiscal challenges.</p>
+        
+        <div class="mt-16">
+            <details>
+                <summary>View Data Sources</summary>
+                <ul class="source-list list-disc list-inside mt-4 space-y-2">
+                    <li><a href="https://www.moneyhelper.org.uk/en/pensions-and-retirement/state-pension/state-pension-the-triple-lock" target="_blank" rel="noopener noreferrer">Money Helper - State Pension Triple Lock</a></li>
+                    <li><a href="https://www.unison.org.uk/content/uploads/2023/11/State-Pension-Triple-Lock-briefing.pdf" target="_blank" rel="noopener noreferrer">UNISON - State Pension Triple Lock Briefing</a></li>
+                    <li><a href="https://www.theguardian.com/uk-news/2025/aug/03/ministers-to-spend-extra-100m-on-stopping-small-boat-crossings-to-uk" target="_blank" rel="noopener noreferrer">The Guardian - Ministers to spend extra £100m</a></li>
+                    <li><a href="https://www.ein.org.uk/news/agreement-france-comes-force-allowing-return-asylum-seekers-crossing-channel-small-boat" target="_blank" rel="noopener noreferrer">EIN - Agreement with France comes into force</a></li>
+                    <li><a href="https://www.gov.uk/government/news/uk-france-treaty-targeting-illegal-crossings-comes-into-force" target="_blank" rel="noopener noreferrer">GOV.UK - UK-France treaty targeting illegal crossings</a></li>
+                    <li><a href="https://www.theguardian.com/uk-news/2025/aug/05/uk-to-start-small-boats-returns-to-france-within-days-after-eu-gives-green-light" target="_blank" rel="noopener noreferrer">The Guardian - UK to start small boats returns to France</a></li>
+                    <li><a href="https://www.nao.org.uk/reports/investigation-into-asylum-accommodation/" target="_blank" rel="noopener noreferrer">NAO - Investigation into asylum accommodation</a></li>
+                    <li><a href="https://migrationobservatory.ox.ac.uk/resources/briefings/people-crossing-the-english-channel-in-small-boats/" target="_blank" rel="noopener noreferrer">Migration Observatory - People crossing the English Channel</a></li>
+                    <li><a href="https://obr.uk/frs/fiscal-risks-and-sustainability-july-2025/" target="_blank" rel="noopener noreferrer">OBR - Fiscal risks and sustainability (July 2025)</a></li>
+                    <li><a href="https://ifs.org.uk/articles/triple-lock-uncertainty-pension-incomes-and-public-finances" target="_blank" rel="noopener noreferrer">IFS - The triple lock: uncertainty for pension incomes</a></li>
+                </ul>
+            </details>
+        </div>
+    </article>
+    <div id="tags-container" class="max-w-4xl mx-auto mt-8"></div>
+    <div id="related-articles-container" class="max-w-7xl mx-auto mt-12 px-4 sm:px-6 lg:px-8"></div>
+</div>
 
-    <div id="footer-placeholder"></div>
+<script>
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) { return label.join(' '); }
+        return label;
+    };
+    const ledgerTheme = {
+        primary: '#facc15',   // amber-400
+        secondary: '#f59e0b', // amber-500
+        light: '#4b5563',     // gray-600
+        dark: '#1f2937',      // gray-800
+        text: '#d1d5db',      // gray-300
+    };
 
-    <script>
-        const tooltipTitleCallback = (tooltipItems) => {
-            const item = tooltipItems[0];
-            let label = item.chart.data.labels[item.dataIndex];
-            if (Array.isArray(label)) { return label.join(' '); }
-            return label;
-        };
-        const ledgerTheme = {
-            primary: '#facc15',   // amber-400
-            secondary: '#f59e0b', // amber-500
-            light: '#4b5563',     // gray-600
-            dark: '#1f2937',      // gray-800
-            text: '#d1d5db',      // gray-300
-        };
-
-        const hotelCostCtx = document.getElementById('hotelCostChart').getContext('2d');
-        new Chart(hotelCostCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Hotel Costs (76%)', 'Other Accommodation Costs (24%)', 'Population in Hotels (35%)', 'Population in Other Accommodation (65%)'],
-                datasets: [{
-                    label: 'Cost Distribution',
-                    data: [76, 24],
-                    backgroundColor: [ledgerTheme.secondary, ledgerTheme.dark],
-                    borderColor: '#111827',
-                    borderWidth: 4,
-                }, {
-                    label: 'Population Distribution',
-                    data: [35, 65],
-                    backgroundColor: [ledgerTheme.primary, ledgerTheme.light],
-                    borderColor: '#111827',
-                    borderWidth: 4,
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'bottom', labels: { color: ledgerTheme.text } },
-                    tooltip: {
-                        callbacks: {
-                            title: (tooltipItems) => {
-                                const item = tooltipItems[0];
-                                const label = item.chart.data.labels[item.dataIndex];
-                                return label.split('(')[0].trim();
-                            },
-                            label: (context) => {
-                                const label = context.dataset.label || '';
-                                const value = context.parsed;
-                                return `${label}: ${value}%`;
-                            }
+    const hotelCostCtx = document.getElementById('hotelCostChart').getContext('2d');
+    new Chart(hotelCostCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Hotel Costs (76%)', 'Other Accommodation Costs (24%)', 'Population in Hotels (35%)', 'Population in Other Accommodation (65%)'],
+            datasets: [{
+                label: 'Cost Distribution',
+                data: [76, 24],
+                backgroundColor: [ledgerTheme.secondary, ledgerTheme.dark],
+                borderColor: '#111827',
+                borderWidth: 4,
+            }, {
+                label: 'Population Distribution',
+                data: [35, 65],
+                backgroundColor: [ledgerTheme.primary, ledgerTheme.light],
+                borderColor: '#111827',
+                borderWidth: 4,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'bottom', labels: { color: ledgerTheme.text } },
+                tooltip: {
+                    callbacks: {
+                        title: (tooltipItems) => {
+                            const item = tooltipItems[0];
+                            const label = item.chart.data.labels[item.dataIndex];
+                            return label.split('(')[0].trim();
+                        },
+                        label: (context) => {
+                            const label = context.dataset.label || '';
+                            const value = context.parsed;
+                            return `${label}: ${value}%`;
                         }
-                    },
-                },
-                cutout: '60%',
-            }
-        });
-
-        const enforcementCostCtx = document.getElementById('enforcementCostChart').getContext('2d');
-        new Chart(enforcementCostCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Border Force Annual Budget', 'Payments to France (3-yr)', 'NCA Anti-Gang Funding'],
-                datasets: [{
-                    label: 'Cost in £ Millions',
-                    data: [1200, 476, 100],
-                    backgroundColor: [ledgerTheme.light, ledgerTheme.secondary, ledgerTheme.primary],
-                    borderColor: ledgerTheme.dark,
-                    borderWidth: 1,
-                    borderRadius: 4,
-                }]
-            },
-            options: {
-                indexAxis: 'y',
-                responsive: true, maintainAspectRatio: false,
-                scales: {
-                    x: { 
-                        grid: { color: '#374151' }, 
-                        ticks: { color: ledgerTheme.text },
-                        title: { display: true, text: 'Cost in £ Millions', color: ledgerTheme.text }
-                    },
-                    y: { grid: { display: false }, ticks: { color: ledgerTheme.text } }
-                },
-                plugins: { legend: { display: false }, tooltip: { callbacks: { title: tooltipTitleCallback } } }
-            }
-        });
-
-        const tripleLockCostCtx = document.getElementById('tripleLockCostChart').getContext('2d');
-        new Chart(tripleLockCostCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Current Additional Cost', 'Projected Additional Cost (2030)'],
-                datasets: [{
-                    label: 'Additional Cost in £ Billions',
-                    data: [11, 15.5],
-                    backgroundColor: [ledgerTheme.secondary, ledgerTheme.primary],
-                    borderColor: [ledgerTheme.secondary, ledgerTheme.primary],
-                    borderWidth: 2,
-                    borderRadius: 4,
-                }]
-            },
-            options: {
-                responsive: true, maintainAspectRatio: false,
-                scales: {
-                    x: { grid: { color: '#374151' }, ticks: { color: ledgerTheme.text } },
-                    y: { 
-                        beginAtZero: true, 
-                        grid: { display: false },
-                        title: { display: true, text: 'Cost in £ Billions', color: ledgerTheme.text },
-                        ticks: { color: ledgerTheme.text }
                     }
                 },
-                plugins: { legend: { display: false }, tooltip: { callbacks: { title: tooltipTitleCallback } } }
-            }
-        });
-    </script>
-    <script src="/assets/js/includes.js"></script>
-    <script src="/assets/js/article.js"></script>
-</body>
-</html>
+            },
+            cutout: '60%',
+        }
+    });
+
+    const enforcementCostCtx = document.getElementById('enforcementCostChart').getContext('2d');
+    new Chart(enforcementCostCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Border Force Annual Budget', 'Payments to France (3-yr)', 'NCA Anti-Gang Funding'],
+            datasets: [{
+                label: 'Cost in £ Millions',
+                data: [1200, 476, 100],
+                backgroundColor: [ledgerTheme.light, ledgerTheme.secondary, ledgerTheme.primary],
+                borderColor: ledgerTheme.dark,
+                borderWidth: 1,
+                borderRadius: 4,
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true, maintainAspectRatio: false,
+            scales: {
+                x: { 
+                    grid: { color: '#374151' }, 
+                    ticks: { color: ledgerTheme.text },
+                    title: { display: true, text: 'Cost in £ Millions', color: ledgerTheme.text }
+                },
+                y: { grid: { display: false }, ticks: { color: ledgerTheme.text } }
+            },
+            plugins: { legend: { display: false }, tooltip: { callbacks: { title: tooltipTitleCallback } } }
+        }
+    });
+
+    const tripleLockCostCtx = document.getElementById('tripleLockCostChart').getContext('2d');
+    new Chart(tripleLockCostCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Current Additional Cost', 'Projected Additional Cost (2030)'],
+            datasets: [{
+                label: 'Additional Cost in £ Billions',
+                data: [11, 15.5],
+                backgroundColor: [ledgerTheme.secondary, ledgerTheme.primary],
+                borderColor: [ledgerTheme.secondary, ledgerTheme.primary],
+                borderWidth: 2,
+                borderRadius: 4,
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            scales: {
+                x: { grid: { color: '#374151' }, ticks: { color: ledgerTheme.text } },
+                y: { 
+                    beginAtZero: true, 
+                    grid: { display: false },
+                    title: { display: true, text: 'Cost in £ Billions', color: ledgerTheme.text },
+                    ticks: { color: ledgerTheme.text }
+                }
+            },
+            plugins: { legend: { display: false }, tooltip: { callbacks: { title: tooltipTitleCallback } } }
+        }
+    });
+</script>
+<script src="/assets/js/article.js"></script>

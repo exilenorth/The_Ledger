@@ -1,28 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reform UK: An Analysis of Policy</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <!-- Chosen Palette: Warm Neutrals with Subtle Accents -->
-    <!-- Application Structure Plan: A thematic, single-page dashboard structure. The user is guided through the party's core narrative, their voter base, a deep dive into the fiscal plans with interactive charts, and a detailed policy explorer. This structure is chosen to break down a dense political analysis into digestible, user-driven sections, prioritizing clarity and exploration over the linear format of the source report. The key interaction is the comparison chart in 'The Numbers' section, which visually and textually contrasts Reform's claims with IFS analysis, directly addressing the report's central thesis. -->
-    <!-- Visualization & Content Choices: 
-        - Report Info: Voter Demographics -> Goal: Inform -> Viz: Doughnut/Bar Charts (Chart.js) -> Interaction: Hover tooltips -> Justification: Intuitive visual representation of proportions.
-        - Report Info: Fiscal Pledges vs. IFS Analysis -> Goal: Compare/Analyze -> Viz: Grouped Bar Chart (Chart.js) -> Interaction: Click bars to update detail text -> Justification: The most effective way to show the core 'fiscal hole' argument and link it to specific evidence.
-        - Report Info: Detailed Policies (Immigration, NHS, etc.) -> Goal: Organize/Inform -> Viz: Tabbed content sections (HTML/JS) -> Interaction: Click tabs to switch content -> Justification: Manages information density and allows user-led exploration of complex topics.
-        - Report Info: "Britain is Broken" Narrative -> Goal: Inform -> Viz: Icon-based grid layout -> Interaction: Static display -> Justification: Clearly presents the foundational pillars of the party's platform.
-        - All choices use Canvas for charts and structured HTML/CSS for layouts, adhering to the NO SVG/Mermaid constraint. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-</head>
-<body class="antialiased" data-page-type="ledger-entry">
-
-    <div id="header-placeholder"></div>
-
+---
+layout: base-layout.html
+title: The Ledger // Reform UK Policy Analysis
+---
     <!-- In-Page Sticky Navigation -->
     <div class="sticky-secondary sticky top-36 z-40 bg-gray-800/90 backdrop-blur-lg shadow-md">
         <div class="container mx-auto px-6">
@@ -102,17 +81,17 @@
                             <div>
                                 <h4 class="font-semibold text-gray-100">Top Motivations:</h4>
                                 <ul class="list-disc list-inside text-gray-300 mt-1">
-                                    <li><strong>19%:</strong> Not Labour or the Conservatives</li>
-                                    <li><strong>18%:</strong> Stance on immigration</li>
-                                    <li><strong>11%:</strong> Promise of a new approach</li>
+                                    <li><strong>19%: </strong>Not Labour or the Conservatives</li>
+                                    <li><strong>18%: </strong>Stance on immigration</li>
+                                    <li><strong>11%: </strong>Promise of a new approach</li>
                                 </ul>
                             </div>
                             <div>
                                 <h4 class="font-semibold text-gray-100">Top Reservations:</h4>
                                 <ul class="list-disc list-inside text-gray-300 mt-1">
-                                    <li><strong>11%:</strong> Lack of governing experience</li>
-                                    <li><strong>9%:</strong> A "wasted vote"</li>
-                                    <li><strong>7%:</strong> Seen as "too right-wing / extreme"</li>
+                                    <li><strong>11%: </strong>Lack of governing experience</li>
+                                    <li><strong>9%: </strong>A "wasted vote"</li>
+                                    <li><strong>7%: </strong>Seen as "too right-wing / extreme"</li>
                                 </ul>
                             </div>
                         </div>
@@ -248,8 +227,7 @@
 
     <div id="tags-container" class="max-w-4xl mx-auto mt-8"></div>
     <div id="related-articles-container" class="max-w-7xl mx-auto mt-12 px-4 sm:px-6 lg:px-8"></div>
-    <div id="footer-placeholder"></div>
-
+    
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Gender Chart
@@ -440,7 +418,4 @@
             });
         });
     </script>
-    <script src="/assets/js/includes.js"></script>
     <script src="/assets/js/article.js"></script>
-</body>
-</html>
