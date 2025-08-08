@@ -15,12 +15,11 @@ title: The Ledger // Archive
     <div id="archive-container" class="space-y-6">
 
         {# Statically generate all article cards #}
-        {% set articles = ledger.concat(data.commentary) %}
+        {% set articles = ledger.concat(commentary) %}
         {% set sortedArticles = articles | sort(false, false, 'date') | reverse %}
 
         {% for entry in sortedArticles %}
             {# The 'data-type' attribute is for the filter script #}
-            <pre>{{ entry | dump | safe }}</pre>
             <div class="archive-card bg-gray-800 rounded-lg p-6 border-l-4 
                 {% if entry.type == 'ENTRY' %}border-amber-400{% else %}border-sky-400{% endif %}"
                 data-type="{% if entry.type == 'ENTRY' %}ledger{% else %}commentary{% endif %}">
