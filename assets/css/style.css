@@ -191,3 +191,27 @@ details[open] .details-arrow {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+/* Subreddit Stats Styles */
+.subreddit-stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    text-align: center;
+    margin: 1.5rem auto 2.5rem auto; /* Add space around the element */
+    max-width: fit-content;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    background-color: #1f2937; /* bg-gray-800 */
+}
+
+.stat-value {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700;
+    color: #ffffff; /* text-white */
+}
+
+.stat-label {
+    font-size: 0.875rem; /* text-sm */
+    color: #9ca3af; /* text-gray-400 */
+    margin-top: 0.25rem;
+}
