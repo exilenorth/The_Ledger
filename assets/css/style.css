@@ -281,3 +281,13 @@ details[open] .details-arrow {
     color: #9ca3af; /* A neutral gray */
     margin-right: 8px;
 }
+/* News Ticker Source Colors */
+.ticker-source.source-bbc {
+    color: #ffffff; /* White */
+}
+.ticker-source.source-reuters {
+    color: #f59e0b; /* Amber */
+}
+.ticker-source.source-gbnews {
+    color: #38bdf8; /* Sky Blue */
+}
