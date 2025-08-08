@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(response => response.text())
             .then(data => {
                 headerPlaceholder.outerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error fetching header:', error);
             });
     }
 
@@ -14,6 +17,9 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(response => response.text())
             .then(data => {
                 footerPlaceholder.outerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error fetching footer:', error);
             });
     }
 });

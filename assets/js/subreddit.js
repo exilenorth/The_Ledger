@@ -2,8 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof subreddit !== 'undefined') {
         const subredditTitleElement = document.getElementById('subreddit-title');
         const explanationElement = document.getElementById('subreddit-explanation');
+        const postsContainer = document.getElementById('subreddit-posts');
 
-        // NEW: Dynamically create and insert the explanation text
+        // Dynamically create and insert the explanation text
         explanationElement.innerHTML = `
             This page displays a live feed of the most popular ('Hot') posts from the 
             <strong>r/${subreddit}</strong> subreddit, an independent online community on Reddit. 
@@ -18,69 +19,57 @@ document.addEventListener('DOMContentLoaded', function() {
                 r/${subreddit}
             </a>
         `;
-        
-        fetchSubredditInfo(subreddit);
-        fetchRedditPosts(subreddit);
+
+        // Fetch subreddit info and posts in parallel
+        Promise.all([
+            fetch(`https://www.reddit.com/r/${subreddit}/about.json`),
+            fetch(`https://www.reddit.com/r/${subreddit}/hot.json?limit=12`)
+        ])
+        .then(responses => 
+            Promise.all(responses.map(res => {
+                if (!res.ok) {
+                    // Throw an error to be caught by the .catch block
+                    throw new Error(`Failed to fetch from ${res.url}: ${res.status} ${res.statusText}`);
+                }
+                return res.json();
+            }))
+        )
+        .then(([aboutData, postsData]) => {
+            // Process subreddit info
+            const statsContainer = document.createElement('div');
+            statsContainer.className = 'subreddit-stats';
+            const numberFormatter = new Intl.NumberFormat('en-GB', {
+                notation: 'compact',
+                compactDisplay: 'short'
+            });
+            statsContainer.innerHTML = `
+                <div>
+                    <div class="stat-value">${numberFormatter.format(aboutData.data.subscribers)}</div>
+                    <div class="stat-label">Members</div>
+                </div>
+                <div>
+                    <div class="stat-value">${numberFormatter.format(aboutData.data.active_user_count)}</div>
+                    <div class="stat-label">Online</div>
+                </div>
+            `;
+            subredditTitleElement.insertAdjacentElement('afterend', statsContainer);
+
+            // Process and display posts
+            const posts = postsData.data.children
+                .filter(child => !child.data.stickied)
+                .map(child => child.data);
+            displayPosts(posts);
+        })
+        .catch(error => {
+            console.error('Error fetching subreddit data:', error);
+            postsContainer.innerHTML = `<p class="text-red-400 text-lg">Could not load posts for r/${subreddit}. The subreddit may be private, banned, or does not exist.</p>`;
+        });
+
     } else {
         console.error('Subreddit name is not defined in the HTML page.');
         document.getElementById('subreddit-title').textContent = 'Error: Subreddit not specified.';
     }
 });
-
-async function fetchSubredditInfo(subreddit) {
-    try {
-        const response = await fetch(`https://www.reddit.com/r/${subreddit}/about.json`);
-        if (!response.ok) {
-            throw new Error(`Failed to fetch info for r/${subreddit}`);
-        }
-        const aboutData = await response.json();
-
-        const statsContainer = document.createElement('div');
-        statsContainer.className = 'subreddit-stats';
-
-        const numberFormatter = new Intl.NumberFormat('en-GB', {
-            notation: 'compact',
-            compactDisplay: 'short'
-        });
-
-        statsContainer.innerHTML = `
-            <div>
-                <div class="stat-value">${numberFormatter.format(aboutData.data.subscribers)}</div>
-                <div class="stat-label">Members</div>
-            </div>
-            <div>
-                <div class="stat-value">${numberFormatter.format(aboutData.data.active_user_count)}</div>
-                <div class="stat-label">Online</div>
-            </div>
-        `;
-        
-        const titleElement = document.getElementById('subreddit-title');
-        titleElement.insertAdjacentElement('afterend', statsContainer);
-
-    } catch (error) {
-        console.error('Error fetching subreddit info:', error);
-    }
-}
-
-async function fetchRedditPosts(subreddit) {
-    const postsContainer = document.getElementById('subreddit-posts');
-    try {
-        const response = await fetch(`https://www.reddit.com/r/${subreddit}/hot.json?limit=12`);
-        if (!response.ok) {
-            throw new Error(`Subreddit not found or Reddit API error: ${response.status}`);
-        }
-        const data = await response.json();
-
-        const posts = data.data.children
-            .filter(child => !child.data.stickied)
-            .map(child => child.data);
-
-        displayPosts(posts);
-    } catch (error) {
-        console.error('Error fetching Reddit posts:', error);
-        postsContainer.innerHTML = `<p class="text-red-400 text-lg">Could not load posts for r/${subreddit}. The subreddit may be private, banned, or does not exist.</p>`;
-    }
-}
 
 function displayPosts(posts) {
     const container = document.getElementById('subreddit-posts');
