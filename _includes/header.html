@@ -4,14 +4,23 @@
         <nav class="flex justify-between items-center">
             <div>
                 <a href="/" class="flex items-center">
-                    <img src="/assets/gfx/Logo.png" alt="The Ledger Logo" class="h-28 w-auto">
+                    <img src="/assets/gfx/Logo.png" alt="The Ledger Logo" class="header-logo">
                 </a>
             </div>
-            <ul class="flex space-x-8 items-center">
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+            <ul class="hidden md:flex space-x-8 items-center text-white">
                 <li><a href="/" class="text-lg hover:text-amber-400 transition-colors duration-300">Home</a></li>
                 <li><a href="/archive/" class="text-lg hover:text-amber-400 transition-colors duration-300">Archive</a></li>
                 <li class="dropdown">
-                    <a href="javascript:void(0)" class="text-lg hover:text-amber-400 transition-colors duration-300">Subreddits</a>
+                    <a href="javascript:void(0)" class="flex items-center text-lg hover:text-amber-400 transition-colors duration-300">
+                        Subreddits
+                        <svg class="w-4 h-4 ml-1 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </a>
                     <div class="dropdown-content">
                         <a href="/subreddits/FuckNigelFarage.html">/r/FuckNigelFarage</a>
                         <a href="/subreddits/ReformUK.html">/r/ReformUK</a>
@@ -21,6 +30,25 @@
                 </li>
             </ul>
         </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <ul class="flex flex-col space-y-4 mt-4 text-white">
+                <li><a href="/" class="block text-lg hover:text-amber-400 transition-colors duration-300">Home</a></li>
+                <li><a href="/archive/" class="block text-lg hover:text-amber-400 transition-colors duration-300">Archive</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="flex items-center text-lg hover:text-amber-400 transition-colors duration-300">
+                        Subreddits
+                        <svg class="w-4 h-4 ml-1 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </a>
+                    <div class="dropdown-content-mobile mt-2">
+                        <a href="/subreddits/FuckNigelFarage.html" class="block">/r/FuckNigelFarage</a>
+                        <a href="/subreddits/ReformUK.html" class="block">/r/ReformUK</a>
+                        <a href="/subreddits/LabourUK.html" class="block">/r/LabourUK</a>
+                        <a href="/subreddits/UKPolitics.html" class="block">/r/UKPolitics</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
     <div id="news-ticker-container">
         <div id="news-ticker">

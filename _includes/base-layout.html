@@ -11,43 +11,7 @@
 </head>
 <body class="antialiased">
 
-    <header class="bg-gray-900 border-b-2 border-amber-400 sticky top-0 z-50">
-        <div class="sticky top-0 z-50">
-  <header class="bg-gray-900 border-b-2 border-amber-400">
-    <div class="container mx-auto px-6 py-4">
-      <nav class="flex justify-between items-center">
-        <div>
-          <a href="/" class="flex items-center">
-            {% if page.url == '/' %}
-              <span class="text-3xl font-bold text-amber-400">The Ledger</span>
-            {% else %}
-              <img src="/assets/gfx/Logo.png" alt="The Ledger Logo" class="h-28 w-auto">
-            {% endif %}
-          </a>
-        </div>
-        <ul class="flex space-x-8 items-center">
-          <li><a href="/" class="text-lg hover:text-amber-400 transition-colors duration-300">Home</a></li>
-          <li><a href="/archive/" class="text-lg hover:text-amber-400 transition-colors duration-300">Archive</a></li>
-          <li class="dropdown">
-            <a href="javascript:void(0)" class="text-lg hover:text-amber-400 transition-colors duration-300">Subreddits</a>
-            <div class="dropdown-content">
-              <a href="/subreddits/FuckNigelFarage.html">/r/FuckNigelFarage</a>
-              <a href="/subreddits/ReformUK.html">/r/ReformUK</a>
-              <a href="/subreddits/LabourUK.html">/r/LabourUK</a>
-              <a href="/subreddits/UKPolitics.html">/r/UKPolitics</a>
-            </div>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <div id="news-ticker-container">
-      <div id="news-ticker">
-        <span class="ticker-label">Live Headlines</span>
-        <ul id="ticker-headlines"></ul>
-      </div>
-    </div>
-  </header> <div id="tradingview-widget-container-wrapper"></div>
-</div>
+    {% include "header.html" %}
 
 <main>
   {{ content | safe }}
@@ -82,7 +46,7 @@
       "showSymbolLogo": true,
       "colorTheme": "dark",
       "isTransparent": false,
-      "displayMode": "adaptive",
+      "displayMode": "regular",
       "locale": "en"
     });
     tradingViewContainer.appendChild(widgetScript);

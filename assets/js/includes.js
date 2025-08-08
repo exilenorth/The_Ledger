@@ -1,7 +1,28 @@
 document.addEventListener("DOMContentLoaded", function() {
     // This script's only job now is to load the news ticker.
     loadNewsTicker();
+    setupMobileMenu();
 });
+
+function setupMobileMenu() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const dropdownToggle = mobileMenu.querySelector('.dropdown > a');
+    const dropdownContent = mobileMenu.querySelector('.dropdown-content-mobile');
+
+    if (mobileMenuButton) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+
+    if (dropdownToggle) {
+        dropdownToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        });
+    }
+}
 
 function loadNewsTicker() {
     // ... (all the news ticker code remains the same)

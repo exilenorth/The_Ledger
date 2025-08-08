@@ -234,7 +234,7 @@ details[open] .details-arrow {
 #news-ticker {
     display: inline-block;
     padding-left: 100%;
-    animation: ticker-scroll 200s linear infinite;
+    animation: ticker-scroll 350s linear infinite;
 }
 
 #news-ticker .ticker-label {
@@ -285,4 +285,37 @@ details[open] .details-arrow {
     margin-right: 8px;
     vertical-align: middle; /* This aligns the logos nicely with the text */
     display: inline-block; /* Ensures proper spacing */
+}
+.header-logo {
+    height: 7rem; /* h-28 */
+    width: auto;
+    max-width: 100%;
+}
+@media (max-width: 768px) {
+    .header-logo {
+        height: 4rem; /* A smaller height for mobile */
+    }
+    .md\:hidden {
+        display: block;
+    }
+    .hidden.md\:flex {
+        display: none;
+    }
+}
+
+/* Mobile Dropdown */
+.dropdown-content-mobile {
+    display: none;
+    padding-left: 1rem;
+}
+
+.dropdown-content-mobile a {
+    color: #d1d5db;
+    padding: 8px 0;
+    display: block;
+    transition: color 0.2s;
+}
+
+.dropdown-content-mobile a:hover {
+    color: #facc15;
 }
