@@ -4,3 +4,4 @@
 # Ignore the Eleventy output folder
 /_site
 
+/docs
