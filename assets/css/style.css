@@ -63,9 +63,6 @@ h1, h2, h3 {
     line-height: 1;
     color: #4b5563; /* gray-600 */
 }
-html, body {
-    overflow: visible !important;
-}
 body {
     /* background-color removed to allow dark theme to apply */
     color: #ccc; /* Adjusted for dark theme readability */

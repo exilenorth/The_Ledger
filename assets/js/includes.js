@@ -4,12 +4,16 @@ document.addEventListener("DOMContentLoaded", function() {
         fetch("/_includes/header.html")
             .then(response => response.text())
             .then(data => {
-                headerPlaceholder.innerHTML = data;
+                headerPlaceholder.outerHTML = data;
+                
+                // Re-select the header element from the main document
+                const headerElement = document.querySelector('header');
                 
                 loadNewsTicker();
 
                 if (document.body.id === 'home-page') {
-                    const logoLink = headerPlaceholder.querySelector('a[href="/"]');
+                    // Find the logo link within the newly selected header
+                    const logoLink = headerElement.querySelector('a[href="/"]');
                     if (logoLink) {
                         const textElement = document.createElement('span');
                         textElement.className = 'text-3xl font-bold text-amber-400';
