@@ -2,43 +2,29 @@ module.exports = function(eleventyConfig) {
   // This command tells Eleventy to copy your assets folder to the output
   eleventyConfig.addPassthroughCopy("assets");
 
-  // NEW CODE STARTS HERE
-  eleventyConfig.addCollection("allArticles", function(collectionApi) {
-    // Get all articles from our two data files
-    const ledgerEntries = require('./assets/data/ledger.json');
-    const commentaryEntries = require('./assets/data/commentary.json');
+  
+eleventyConfig.addFilter("formatDate", (dateString) => {
+  if (!dateString) {
+    return "NO DATE";
+  }
+  // The 'T00:00:00Z' part tells the parser to treat it as a UTC date,
+  // avoiding timezone issues that can sometimes cause errors.
+  const d = new Date(dateString + 'T00:00:00Z');
 
-    // Add a 'type' to each so we can style them differently
-    const typedLedgerEntries = ledgerEntries.map(entry => ({ ...entry, type: 'ledger' }));
-    const typedCommentaryEntries = commentaryEntries.map(entry => ({ ...entry, type: 'commentary' }));
+  // Check if the date is valid after parsing
+  if (isNaN(d.getTime())) {
+    return "INVALID DATE";
+  }
 
-    // Combine them into one big array
-    const all = [...typedLedgerEntries, ...typedCommentaryEntries];
-
-    // Sort by date, newest first
-    return all.sort((a, b) => new Date(b.date) - new Date(a.date));
-  });
-  // NEW CODE ENDS HERE
-
-  // NEW CODE STARTS HERE
-eleventyConfig.addFilter("formatDate", (dateObj) => {
-    const d = new Date(dateObj);
-    // Use the same formatting options as your original JS
-    const options = { day: '2-digit', month: 'short', year: 'numeric' };
-    return d.toLocaleDateString('en-GB', options).toUpperCase();
+  const options = { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' };
+  return d.toLocaleDateString('en-GB', options).toUpperCase();
 });
-// NEW CODE ENDS HERE
 
   // This is the main configuration object
   return {
-    // Tell Eleventy to process html, md (markdown), and njk (nunjucks) files
     templateFormats: ["html", "md", "njk"],
-
-    // Set the engine to use for HTML and Markdown files
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk",
-
-    // Define the input and output directories
     dir: {
       input: ".",
       output: "_site",

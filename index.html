@@ -19,8 +19,12 @@ title: The Ledger // Just the facts. Not the spin.
     <h2 class="text-3xl font-bold mb-12 text-center">Latest Articles</h2>
     <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-  {% for entry in collections.allArticles %}
-    {% if entry.type == 'ledger' %}
+  {# These lines create and sort our article list directly from the _data folder #}
+  {% set articles = ledger.concat(commentary) %}
+  {% set sortedArticles = articles | sort(false, false, 'date') | reverse %}
+
+  {% for entry in sortedArticles %}
+    {% if entry.type == 'ENTRY' %}
       <div class="card card-ledger bg-gray-800 rounded-lg overflow-hidden flex flex-col">
         <div class="p-6 flex-grow flex flex-col">
           <p class="text-sm text-gray-400 mb-2 font-semibold tracking-wider">LEDGER // {{ entry.date | formatDate }}</p>

@@ -1,25 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // The header is now built by Eleventy, so we only need to
-    // run the function that loads the news headlines.
+    // This script's only job now is to load the news ticker.
     loadNewsTicker();
-
-    // We can also find and clean up the footer placeholder logic here
-    // as it's no longer needed.
-    const footerPlaceholder = document.getElementById("footer-placeholder");
-    if (footerPlaceholder) {
-        // Create a new element to avoid breaking the DOM if there are scripts after
-        const newFooter = document.createElement('div');
-        fetch("/_includes/footer.html")
-            .then(response => response.text())
-            .then(data => {
-                newFooter.innerHTML = data;
-                footerPlaceholder.replaceWith(...newFooter.childNodes);
-            })
-            .catch(error => console.error('Error fetching footer:', error));
-    }
 });
 
 function loadNewsTicker() {
+    // ... (all the news ticker code remains the same)
     const headlinesContainer = document.getElementById('ticker-headlines');
     if (!headlinesContainer) return;
 
