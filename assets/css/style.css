@@ -237,7 +237,7 @@ details[open] .details-arrow {
 #news-ticker {
     display: inline-block;
     padding-left: 100%;
-    animation: ticker-scroll 120s linear infinite;
+    animation: ticker-scroll 200s linear infinite;
 }
 
 #news-ticker .ticker-label {
