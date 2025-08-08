@@ -4,6 +4,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const explanationElement = document.getElementById('subreddit-explanation');
         const postsContainer = document.getElementById('subreddit-posts');
 
+        // NEW: Check for and display the subreddit logo
+        if (typeof subredditLogo !== 'undefined' && subredditLogo) {
+            const logoElement = document.createElement('img');
+            logoElement.src = subredditLogo;
+            logoElement.alt = `Logo for r/${subreddit}`;
+            logoElement.className = 'subreddit-logo';
+            // Insert the logo right before the explanation text
+            explanationElement.before(logoElement);
+        }
+
         // Dynamically create and insert the explanation text
         explanationElement.innerHTML = `
             This page displays a live feed of the most popular ('Hot') posts from the 
@@ -28,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(responses => 
             Promise.all(responses.map(res => {
                 if (!res.ok) {
-                    // Throw an error to be caught by the .catch block
                     throw new Error(`Failed to fetch from ${res.url}: ${res.status} ${res.statusText}`);
                 }
                 return res.json();

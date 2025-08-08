@@ -4,7 +4,25 @@ document.addEventListener("DOMContentLoaded", function() {
         fetch("/_includes/header.html")
             .then(response => response.text())
             .then(data => {
-                headerPlaceholder.outerHTML = data;
+                const headerContainer = document.createElement('div');
+                headerContainer.innerHTML = data;
+
+                // Check if we are on the homepage
+                if (document.body.id === 'home-page') {
+                    const logoLink = headerContainer.querySelector('a[href="/"]');
+                    if (logoLink) {
+                        // Create a new text element
+                        const textElement = document.createElement('span');
+                        textElement.className = 'text-3xl font-bold text-amber-400'; // Style to match your brand
+                        textElement.textContent = 'The Ledger';
+                        
+                        // Replace the image with the new text element
+                        logoLink.innerHTML = ''; // Clear the link content
+                        logoLink.appendChild(textElement);
+                    }
+                }
+                
+                headerPlaceholder.outerHTML = headerContainer.innerHTML;
             })
             .catch(error => {
                 console.error('Error fetching header:', error);

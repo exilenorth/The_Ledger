@@ -215,3 +215,13 @@ details[open] .details-arrow {
     color: #9ca3af; /* text-gray-400 */
     margin-top: 0.25rem;
 }
+/* Subreddit Logo Styles */
+.subreddit-logo {
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* This creates the circular shape */
+    border: 3px solid #facc15; /* Your site's amber accent color */
+    margin: 0 auto 1.5rem auto; /* Centers the logo */
+    object-fit: cover;
+}
