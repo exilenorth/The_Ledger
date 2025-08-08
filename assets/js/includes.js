@@ -4,25 +4,22 @@ document.addEventListener("DOMContentLoaded", function() {
         fetch("/_includes/header.html")
             .then(response => response.text())
             .then(data => {
-                const headerContainer = document.createElement('div');
-                headerContainer.innerHTML = data;
+                headerPlaceholder.innerHTML = data;
+                
+                // Now that the header is loaded, we can run the news ticker logic
+                loadNewsTicker();
 
-                // Check if we are on the homepage
+                // Homepage-specific logic
                 if (document.body.id === 'home-page') {
-                    const logoLink = headerContainer.querySelector('a[href="/"]');
+                    const logoLink = headerPlaceholder.querySelector('a[href="/"]');
                     if (logoLink) {
-                        // Create a new text element
                         const textElement = document.createElement('span');
-                        textElement.className = 'text-3xl font-bold text-amber-400'; // Style to match your brand
+                        textElement.className = 'text-3xl font-bold text-amber-400';
                         textElement.textContent = 'The Ledger';
-                        
-                        // Replace the image with the new text element
-                        logoLink.innerHTML = ''; // Clear the link content
+                        logoLink.innerHTML = '';
                         logoLink.appendChild(textElement);
                     }
                 }
-                
-                headerPlaceholder.outerHTML = headerContainer.innerHTML;
             })
             .catch(error => {
                 console.error('Error fetching header:', error);
@@ -41,3 +38,34 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     }
 });
+
+function loadNewsTicker() {
+    const headlinesContainer = document.getElementById('ticker-headlines');
+    if (!headlinesContainer) return;
+
+    // This is a publicly available RSS feed for the BBC News UK front page
+    const bbcRssUrl = 'http://feeds.bbci.co.uk/news/politics/rss.xml';
+
+    // Because of browser security (CORS), we can't fetch the XML directly.
+    // We use a free, public proxy to convert the XML to JSON for us.
+    const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(bbcRssUrl)}`;
+
+    fetch(proxyUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'ok') {
+                const items = data.items;
+                let headlinesHtml = '';
+                items.forEach(item => {
+                    headlinesHtml += `<li><a href="${item.link}" target="_blank">${item.title}</a></li>`;
+                });
+                headlinesContainer.innerHTML = headlinesHtml;
+            } else {
+                throw new Error('Failed to load news feed.');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching news ticker data:', error);
+            headlinesContainer.innerHTML = '<li>Headlines are currently unavailable.</li>';
+        });
+}
