@@ -1,42 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Ledger // Just the facts. Not the spin.</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body id="home-page" class="antialiased">
+---
+layout: base-layout.html
+title: The Ledger // Just the facts. Not the spin.
+---
 
-    <div id="header-placeholder"></div>
-
-    <!-- Mission Explainer Section -->
-    <section class="bg-gray-800 py-16">
-        <div class="container mx-auto px-6 text-center max-w-4xl">
-            <div class="text-center mb-12">
-                <img src="/assets/gfx/Logo.png" alt="The Ledger Logo" class="w-80 h-auto mx-auto">
-            </div>
-            <h2 class="text-3xl font-bold mb-4">Our Mission</h2>
-            <p class="text-lg text-gray-300 leading-relaxed">
-                In an era of intense political tribalism, the UK's public discourse is dominated by spin and ideology. We believe that citizens deserve access to clear, objective, and data-driven analysis to make their own informed decisions. The Ledger exists to cut through the noise by providing the unfiltered data and non-partisan analysis that is often missing from the headlines. We don't tell you what to think; we give you the tools to think for yourself.
-            </p>
+<section class="bg-gray-800 py-16">
+    <div class="container mx-auto px-6 text-center max-w-4xl">
+        <div class="text-center mb-12">
+            <img src="/assets/gfx/Logo.png" alt="The Ledger Logo" class="w-80 h-auto mx-auto">
         </div>
-    </section>
+        <h2 class="text-3xl font-bold mb-4">Our Mission</h2>
+        <p class="text-lg text-gray-300 leading-relaxed">
+            In an era of intense political tribalism, the UK's public discourse is dominated by spin and ideology. We believe that citizens deserve access to clear, objective, and data-driven analysis to make their own informed decisions. The Ledger exists to cut through the noise by providing the unfiltered data and non-partisan analysis that is often missing from the headlines. We don't tell you what to think; we give you the tools to think for yourself.
+        </p>
+    </div>
+</section>
 
-    <!-- Main Content -->
-    <!-- Main Content: Single Feed -->
-    <main class="container mx-auto px-6 py-20">
-        <h2 class="text-3xl font-bold mb-12 text-center">Latest Articles</h2>
-        <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Articles will be loaded here by homepage.js -->
+<main class="container mx-auto px-6 py-20">
+    <h2 class="text-3xl font-bold mb-12 text-center">Latest Articles</h2>
+    <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         </div>
-    </main>
-
-    <div id="footer-placeholder"></div>
-
-<script src="/assets/js/homepage.js"></script>
-<script src="/assets/js/includes.js"></script>
-</body>
-</html>
+</main>

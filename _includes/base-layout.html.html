@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="antialiased">
+
+    <header class="bg-gray-900 border-b-2 border-amber-400 sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex justify-between items-center">
+                <div>
+                    <a href="/" class="flex items-center">
+                        <img src="/assets/gfx/Logo.png" alt="The Ledger Logo" class="h-28 w-auto">
+                    </a>
+                </div>
+                <ul class="flex space-x-8 items-center">
+                    <li><a href="/" class="text-lg hover:text-amber-400 transition-colors duration-300">Home</a></li>
+                    <li><a href="/archive/" class="text-lg hover:text-amber-400 transition-colors duration-300">Archive</a></li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="text-lg hover:text-amber-400 transition-colors duration-300">Subreddits</a>
+                        <div class="dropdown-content">
+                            <a href="/subreddits/FuckNigelFarage.html">/r/FuckNigelFarage</a>
+                            <a href="/subreddits/ReformUK.html">/r/ReformUK</a>
+                            <a href="/subreddits/LabourUK.html">/r/LabourUK</a>
+                            <a href="/subreddits/UKPolitics.html">/r/UKPolitics</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div id="news-ticker-container">
+            <div id="news-ticker">
+                <span class="ticker-label">Live Headlines</span>
+                <ul id="ticker-headlines">
+                    </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {{ content | safe }}
+    </main>
+
+    <footer class="bg-gray-900 mt-16 border-t border-gray-800">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-500">
+            <p>&copy; 2025 The Ledger. Recording the reality.</p>
+        </div>
+    </footer>
+
+    <script src="/assets/js/includes.js"></script>
+    <script src="/assets/js/article.js"></script>
+
+</body>
+</html>
