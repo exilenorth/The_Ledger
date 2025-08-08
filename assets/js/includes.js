@@ -22,6 +22,17 @@ document.addEventListener("DOMContentLoaded", function() {
                         logoLink.appendChild(textElement);
                     }
                 }
+
+                // START: Calculate header height and apply to sticky-secondary elements
+                const header = document.querySelector('header');
+                if (header) {
+                    const headerHeight = header.offsetHeight;
+                    const secondaryMenus = document.querySelectorAll('.sticky-secondary');
+                    secondaryMenus.forEach(menu => {
+                        menu.style.top = `${headerHeight}px`;
+                    });
+                }
+                // END: Calculate header height and apply to sticky-secondary elements
             })
             .catch(error => {
                 console.error('Error fetching header:', error);
